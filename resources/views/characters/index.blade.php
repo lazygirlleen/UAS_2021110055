@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Guests List')
+@section('title', ' List')
 
 @section('content')
-<div class="mt-4 p-5 bg-black text-white rounded">
+<div class="mt-4 p-5 bg-black  text-white rounded-lg shadow">
     <h1>All Characters</h1>
 
     <a href="{{ route('characters.create') }}" class="btn btn-primary btn-sm">
@@ -20,9 +20,9 @@
 @endif
 
 <div class="container mt-5">
-    <table class="table table-bordered mb-5">
+    <table class="table mb-5">
         <thead>
-            <tr>
+            <tr class=" hover:bg-gray-50">
                 <th scope="col">ID</th>
                 <th scope="col">Name</th>
                 <th scope="col">Rarity</th>
@@ -33,7 +33,7 @@
                 <th scope="col">Action</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody  class="text-gray-700">
             @forelse ($characters as $character)
             <tr>
                 <th scope="row">{{ $character->id }}</th>
