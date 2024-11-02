@@ -21,12 +21,12 @@
     </head>
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
                 <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
-                   
+
                         @if (Route::has('login'))
                             <nav class="-mx-3 flex flex-1 justify-end">
                                 @auth
                                     <a
-                                        href="{{ url('/dashboard') }}"
+                                        href="{{ url('/home') }}"
                                         class=" text-gray-600 text-base hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
                                     >
                                         Dashboard

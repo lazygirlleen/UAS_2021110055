@@ -17,7 +17,8 @@ return new class extends Migration
             $table->integer('rarity');
             $table->string('nation');
             $table->string('element');
-            $table->string('weapon');
+
+            $table->timestamps();
         });
     }
 

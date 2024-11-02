@@ -36,10 +36,9 @@ class CharacterController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'rarity' => 'required|string|max:255',
+            'rarity' => 'required|integer|in:4,5',
             'nation' => 'required|string|max:13',
             'element' => 'required|string|max:13',
-            'weapon_id' => 'nullable|exists:weapons,id'
         ]);
 
         // if($request->hasFile('avatar')){
@@ -55,8 +54,6 @@ class CharacterController extends Controller
             'rarity'=> $validated['rarity'],
             'nation'=> $validated['nation'],
             'element'=> $validated['element'],
-            // 'avatar'=> $validated['avatar'] ?? null,
-            'weapon_id'=> $validated['weapon_id'] ?? null,
         ]);
 
         return redirect()->route('characters.index')->with('success', 'Character added succesfully');
@@ -85,10 +82,9 @@ class CharacterController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'rarity' => 'required|string|max:255',
+            'rarity' => 'required|integer|in:4,5',
             'nation' => 'required|string|max:13',
             'element' => 'required|string|max:13',
-            'weapon_id' => 'nullable|exists:weapons,id'
         ]);
 
         // if($request->hasFile('avatar')){
@@ -104,8 +100,6 @@ class CharacterController extends Controller
             'rarity'=> $validated['rarity'],
             'nation'=> $validated['nation'],
             'element'=> $validated['element'],
-            // 'avatar'=> $validated['avatar'] ?? null,
-            'weapon_id'=> $validated['weapon_id'] ?? null,
         ]);
 
         return redirect()->route('characters.index')->with('success', 'Character update succesfully');

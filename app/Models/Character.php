@@ -11,7 +11,6 @@ class Character extends Model
         'rarity',
         'nation',
         'element',
-        'weapon_id'
     ];
 
 }
