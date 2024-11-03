@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Character extends Model
 {
@@ -11,6 +12,26 @@ class Character extends Model
         'rarity',
         'nation',
         'element',
+        'weapon',
+        'faction',
+        'avatar',
     ];
+
+    protected $append = [
+        'avatar_url',
+    ];
+
+    public function getAvatarUrlAttribute()
+    {
+        return $this->avatar ? asset('storage/' . $this->avatar) : null;
+    }
+
+    public function weapons()
+    {
+        return $this->belongsToMany(Weapon::class, 'character_weapon');
+    }
+
+
+
 
 }

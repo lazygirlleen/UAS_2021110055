@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Character;
+use App\Models\Weapon;
 use Illuminate\Http\Request;
 
 class CharacterController extends Controller
@@ -17,7 +18,8 @@ class CharacterController extends Controller
 
     public function index()
     {
-        $characters = Character::paginate(10);
+        $weapons = Weapon::all();
+        $characters = Character::paginate(5);
         return view('characters.index', compact('characters'));
     }
 
@@ -39,21 +41,26 @@ class CharacterController extends Controller
             'rarity' => 'required|integer|in:4,5',
             'nation' => 'required|string|max:13',
             'element' => 'required|string|max:13',
+            'type' => 'required|string|max:13',
+            'faction' => 'required|string|max:255',
         ]);
 
-        // if($request->hasFile('avatar')){
-        //     $request->validate([
-        //         'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg,webp,svg|max:2048',
-        //     ]);
-        //     $imagePath = $request->file('avatar')->storePublicly('public/images');
-        //     $validated['avatar'] = $imagePath;
-        // }
+        if ($request->hasFile('avatar')) {
+            $imagePath = $request->file('avatar')->store('images', 'public');
+            $validated['avatar'] = $imagePath;
+        }
+        $character = Character::create($validated);
+
+        $defaultWeaponId = 1;
+        $character->weapons()->attach($defaultWeaponId);
 
         Character::create([
             'name'=> $validated['name'],
             'rarity'=> $validated['rarity'],
             'nation'=> $validated['nation'],
             'element'=> $validated['element'],
+            'weapon'=> $validated['weapon'],
+            'faction'=> $validated['faction'],
         ]);
 
         return redirect()->route('characters.index')->with('success', 'Character added succesfully');
@@ -72,7 +79,8 @@ class CharacterController extends Controller
      */
     public function edit(Character $character)
     {
-        return view('characters.edit', compact('character'));
+        $weapons = Weapon::all();
+        return view('characters.edit', compact('character', 'weapons'));
     }
 
     /**
@@ -85,21 +93,22 @@ class CharacterController extends Controller
             'rarity' => 'required|integer|in:4,5',
             'nation' => 'required|string|max:13',
             'element' => 'required|string|max:13',
+            'weapon' => 'required|string|max:13',
+            'faction' => 'required|string|max:255',
         ]);
 
-        // if($request->hasFile('avatar')){
-        //     $request->validate([
-        //         'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg,webp,svg|max:2048',
-        //     ]);
-        //     $imagePath = $request->file('avatar')->storePublicly('public/images');
-        //     $validated['avatar'] = $imagePath;
-        // }
+        if ($request->hasFile('avatar')) {
+            $imagePath = $request->file('avatar')->store('images', 'public');
+            $validated['avatar'] = $imagePath;
+        }
 
         Character::create([
             'name'=> $validated['name'],
             'rarity'=> $validated['rarity'],
             'nation'=> $validated['nation'],
             'element'=> $validated['element'],
+            'weapon'=> $validated['weapon'],
+            'faction'=> $validated['faction'],
         ]);
 
         return redirect()->route('characters.index')->with('success', 'Character update succesfully');

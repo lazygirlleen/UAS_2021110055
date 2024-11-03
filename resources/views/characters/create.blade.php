@@ -20,7 +20,7 @@
         </div>
         @endif
 
-        <form action="{{ route('character.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('characters.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="form-group">
@@ -43,7 +43,7 @@
 
             <div class="form-group mt-3">
                 <label for="nation">Nation</label>
-                <select class="form-select" id="nation" name="nation" required>
+                <select class="form-select" id="nation" name="nation" required value="{{ old('nation')}}">
                     <option value=""></option>
                     <option value="Monstadt">Monstadt</option>
                     <option value="Liyue">Liyue</option>
@@ -57,7 +57,7 @@
 
             <div class="form-group mt-3">
                 <label for="element">Element</label>
-                <select class="form-select" id="element" name="element" required>
+                <select class="form-select" id="element" name="element"  required value="{{ old(key: 'element')}}">
                     <option value=""></option>
                     <option value="Anemo">Anemo</option>
                     <option value="Geo">Geo</option>
@@ -68,6 +68,22 @@
                 </select>
             </div>
 
+            <div class="form-group mt-3">
+                <label for="weapon">Weapon</label>
+                <select class="form-select" id="weapon" name="weapon"  required value="{{ old(key: 'weapon')}}">
+                    <option value=""></option>
+                    <option value="Sword">Sword</option>
+                    <option value="Claymore">Claymore</option>
+                    <option value="Polearm">Polearm</option>
+                    <option value="Catalyst">Catalyst</option>
+                    <option value="Bow">Bow</option>
+                </select>
+            </div>
+
+            <div class="form-group mt-3">
+                    <label for="avatar">Avatar</label>
+                    <input type="file" class="form-control" id="avatar"  name="avatar">
+            </div>
 
 
             <button type="submit" class="btn btn-primary btn-block mt-4">Save</button>

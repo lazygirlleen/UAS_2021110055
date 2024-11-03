@@ -3,8 +3,15 @@
 @section('title', "Character: $character->name")
 
 @section('content')
+
 <div class="max-w-2xl mx-auto mt-8 p-6 bg-white">
   <h1 class="text-3xl font-bold text-gray-800 mb-6">Character Details</h1>
+
+  @if ($character->avatar)
+    <img src="{{ $character->avatar_url }}" class="rounded img-thumbnail mx-auto d-block my-3" alt="{{ $character->name }}" />
+    @endif
+
+
 
   <table class="min-w-full bg-white border border-gray-200 rounded-lg mx-auto table mb-5">
     <tbody>
@@ -23,6 +30,14 @@
         <tr>
             <th class="text-left p-4 font-semibold text-gray-700">Element</th>
             <td class="p-4 text-gray-700">{{ $character->element }}</td>
+        </tr>
+        <tr>
+            <th class="text-left p-4 font-semibold text-gray-700">Weapon</th>
+            <td class="p-4 text-gray-700">{{ $character->type }}</td>
+        </tr>
+        <tr>
+            <th class="text-left p-4 font-semibold text-gray-700">Faction</th>
+            <td class="p-4 text-gray-700">{{ $character->faction }}</td>
         </tr>
     </tbody>
 </table>

@@ -18,15 +18,19 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg- text-white shadow-sm">
             <div class="container">
-                <!-- <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a> -->
+
                 @auth
                     <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                            <a class="nav-link" href="{{ route('home') }}">Home</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('characters.index') }}">Character</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('weapons.index') }}">Weapon</a>
                         </li>
 
                     </ul>
