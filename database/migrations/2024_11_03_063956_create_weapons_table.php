@@ -16,6 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->integer('rarity');
             $table->string('type');
+            $table->integer('base_atk');
+            $table->string('secondary_stat')->nullable();
+            $table->string('secondary_stat_value')->nullable();
+            $table->string('avatar')->nullable();
             $table->timestamps();
         });
     }

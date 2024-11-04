@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="mt-4 p-5 bg-black text-white rounded">
+    <div class="mt-4 p-5 bg-black text-white">
         <h1>All Weapons</h1>
         <a href="{{ route('weapons.create') }}" class="btn btn-primary btn-sm">Add New Weapon</a>
     </div>
@@ -20,7 +20,6 @@
 
                         <h5 class="card-title">{{ '#' . Str::padLeft($weapon->id, 4, '0') }}</h5>
 
-                        <a href="{{ route('weapons.show', $weapon->id) }}" class="stretched-link">
                             <h5 class="card-title">{{ $weapon->name }}</h5>
                         </a>
                         <p class="card-text">{{ $weapon->type }}</p>

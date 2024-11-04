@@ -19,7 +19,7 @@ class CharacterController extends Controller
     public function index()
     {
         $weapons = Weapon::all();
-        $characters = Character::paginate(5);
+        $characters = Character::paginate(10);
         return view('characters.index', compact('characters'));
     }
 

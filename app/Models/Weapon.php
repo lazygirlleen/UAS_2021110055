@@ -9,10 +9,14 @@ class Weapon extends Model
     protected $fillable = [
         'name',
         'rarity',
-        'type'
+        'type',
+        'base_atk',
+        'secondary_stat',
+        'secondary_stat_value',
+        'avatar'
     ];
 
-    protected $append = [
+    protected $appends = [
         'avatar_url',
     ];
 
@@ -23,11 +27,6 @@ class Weapon extends Model
 
     public function characters()
     {
-    return $this->belongsToMany(Character::class, 'character_weapon')
-                ->withPivot('type')
-                ->withTimestamps();
+        return $this->belongsToMany(Character::class);
     }
-
-
-
 }

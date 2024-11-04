@@ -13,7 +13,7 @@ class WeaponController extends Controller
     }
     public function index()
     {
-        $weapons = Weapon::paginate(10);
+        $weapons = Weapon::paginate(9);
         return view('weapons.index', compact('weapons'));
     }
 

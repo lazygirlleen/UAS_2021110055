@@ -24,8 +24,6 @@
                 <th scope="col">Rarity</th>
                 <th scope="col">Element</th>
                 <th scope="col">Weapon</th>
-                <th scope="col">Created At</th>
-                <th scope="col">Updated At</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -34,11 +32,9 @@
                 <tr>
                     <th scope="row">{{ $character->id }}</th>
                     <td><a href="{{ route('characters.show', $character) }}">{{ $character->name }}</a></td>
-                    <td class="font-medium text-gray-900">{{ $character->rarity }}</td>
+                    <td class="font-medium text-gray-900">{{ $character->rarity }} star</td>
                     <td class="font-medium text-gray-900">{{ $character->element }}</td>
                     <td class="font-medium text-gray-900">{{ $character->type }}</td>
-                    <td class="font-medium text-gray-900">{{ $character->created_at }}</td>
-                    <td class="font-medium text-gray-900">{{ $character->updated_at }}</td>
                     <td>
                         <a href="{{ route('characters.edit', $character) }}" class="btn btn-primary btn-sm">Edit</a>
                         <form action="{{ route('characters.destroy', $character) }}" method="POST" class="d-inline-block">
