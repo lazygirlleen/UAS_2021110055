@@ -1,10 +1,7 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Topup;
 use Illuminate\Http\Request;
-
 class TopupController extends Controller
 {
     /**
@@ -12,9 +9,9 @@ class TopupController extends Controller
      */
     public function index()
     {
-        
+        $topups = Topup::paginate(10);
+        return view('topups.index', compact('topups'));
     }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -22,7 +19,6 @@ class TopupController extends Controller
     {
         //
     }
-
     /**
      * Store a newly created resource in storage.
      */
@@ -30,7 +26,6 @@ class TopupController extends Controller
     {
         //
     }
-
     /**
      * Display the specified resource.
      */
@@ -38,7 +33,6 @@ class TopupController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      */
@@ -46,7 +40,6 @@ class TopupController extends Controller
     {
         //
     }
-
     /**
      * Update the specified resource in storage.
      */
@@ -54,7 +47,6 @@ class TopupController extends Controller
     {
         //
     }
-
     /**
      * Remove the specified resource from storage.
      */
@@ -62,4 +54,5 @@ class TopupController extends Controller
     {
         //
     }
+
 }

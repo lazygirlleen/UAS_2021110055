@@ -5,7 +5,10 @@
 @section('content')
 
 <div class="max-w-2xl mx-auto mt-8 p-6 bg-white">
+<div class="mt-4 p-5 bg-black text-white">
     <h1 class="text-3xl font-bold text-gray-800 mb-6">Character Details</h1>
+</div>
+</div>
 
     @if ($character->avatar)
         <img src="{{ $character->avatar_url }}" class="rounded img-thumbnail mx-auto d-block my-3" alt="{{ $character->name }}" />

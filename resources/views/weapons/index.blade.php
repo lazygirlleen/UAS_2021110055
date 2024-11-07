@@ -3,7 +3,6 @@
 @section('content')
     <div class="mt-4 p-5 bg-black text-white">
         <h1>All Weapons</h1>
-        <a href="{{ route('weapons.create') }}" class="btn btn-primary btn-sm">Add New Weapon</a>
     </div>
 
     @if (session()->has('success'))

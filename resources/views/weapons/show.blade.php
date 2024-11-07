@@ -46,7 +46,7 @@
   <a href="{{ route('weapons.edit', $weapon) }}" class="btn btn-primary">Edit</a>
         <form action="{{ route('weapons.destroy', $weapon) }}" method="POST" style="display:inline;">
         <button class=" bg-black  text-white  py-2 px-4 mt-3 rounded">
-        <a href="{{ route('characters.index') }}" class="px-6 py-2 bg-black text-white font-semibold shadow hover:bg-blue-600 transition rounded items-center">
+        <a href="{{ route('weapons.index') }}" class="px-6 py-2 bg-black text-white font-semibold shadow hover:bg-blue-600 transition rounded items-center">
             Back
         </a>
         </button>

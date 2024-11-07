@@ -35,6 +35,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('weapons.index') }}">Weapon</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('topups.index') }}">Topup</a>
+                        </li>
 
                     </ul>
                     @endauth

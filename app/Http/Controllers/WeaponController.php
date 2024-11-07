@@ -22,7 +22,7 @@ class WeaponController extends Controller
      */
     public function create()
     {
-        return view( 'weapons.create');
+       //
     }
 
     /**

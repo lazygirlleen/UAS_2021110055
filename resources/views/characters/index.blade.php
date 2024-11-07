@@ -13,20 +13,20 @@
     @endif
     <div class="container">
     <div class="row g-4 mt-4">
-        @forelse ($characters as $character)
+        @forelse ($characters as $topup)
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
                     <div class="card-body">
 
-                        <h5 class="card-title">{{ '#' . Str::padLeft($character->id, 4, '0') }}</h5>
+                        <h5 class="card-title">{{ '#' . Str::padLeft($topup->id, 4, '0') }}</h5>
 
-                        <a href="{{ route('characters.show', $character->id) }}" class="stretched-link">
-                            <h5 class="card-title">{{ $character->name }}</h5>
+                        <a href="{{ route('characters.show', $topup->id) }}" class="stretched-link">
+                            <h5 class="card-title">{{ $topup->name }}</h5>
                         </a>
 
-                        <p class="card-text">{{ $character->element }}</p>
-                        <p class="card-text">{{ $character->weapon_type }}</p>
-                        <p class="card-text badge rounded-pill bg-success">{{ $character->rarity }} Star</p>
+                        <p class="card-text">{{ $topup->element }}</p>
+                        <p class="card-text">{{ $topup->weapon_type }}</p>
+                        <p class="card-text badge rounded-pill bg-success">{{ $topup->rarity }} Star</p>
 
 
                     </div>
