@@ -23,6 +23,9 @@
 
                 @auth
                     <ul class="navbar-nav me-auto">
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        {{ config( 'Genshin Impact') }} Genshin Impact
+                    </a>
                     <li class="nav-item">
                             <a class="nav-link" href="{{ route('home') }}">Home</a>
                         </li>

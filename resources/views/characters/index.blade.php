@@ -1,61 +1,47 @@
 @extends('layouts.app')
 
-@section('title', 'List')
-
 @section('content')
-<div class="mt-4 p-5 bg-black text-white rounded-lg shadow">
-    <h1>All Characters</h1>
-    <a href="{{ route('characters.create') }}" class="btn btn-primary btn-sm">Add New Character</a>
+    <div class="mt-4 p-5 bg-black text-white">
+        <h1>All Characters</h1>
+        <a href="{{ route('characters.create') }}" class="btn btn-primary btn-sm">Add New Character</a>
+    </div>
+
+    @if (session()->has('success'))
+        <div class="alert alert-success mt-4">
+            {{ session()->get('success') }}
+        </div>
+    @endif
+    <div class="container">
+    <div class="row g-4 mt-4">
+        @forelse ($characters as $character)
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+
+                        <h5 class="card-title">{{ '#' . Str::padLeft($character->id, 4, '0') }}</h5>
+
+                        <a href="{{ route('characters.show', $character->id) }}" class="stretched-link">
+                            <h5 class="card-title">{{ $character->name }}</h5>
+                        </a>
+
+                        <p class="card-text">{{ $character->element }}</p>
+                        <p class="card-text">{{ $character->weapon_type }}</p>
+                        <p class="card-text badge rounded-pill bg-success">{{ $character->rarity }} Star</p>
 
 
-</div>
+                    </div>
+                </div>
+            </div>
+        @empty
+            <div class="col-12">
+                <p class="text-center">No Character found.</p>
+            </div>
+        @endforelse
 
-@if (session()->has('success'))
-    <div class="alert alert-success mt-4">{{ session()->get('success') }}</div>
-@endif
-
-
-<div class="container mt-5">
-    <table class="table mb-5">
-        <thead>
-            <tr class="hover:bg-gray-50">
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Rarity</th>
-                <th scope="col">Element</th>
-                <th scope="col">Weapon</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody class="text-gray-700">
-            @forelse ($characters as $character)
-                <tr>
-                    <th scope="row">{{ $character->id }}</th>
-                    <td><a href="{{ route('characters.show', $character) }}">{{ $character->name }}</a></td>
-                    <td class="font-medium text-gray-900">{{ $character->rarity }} star</td>
-                    <td class="font-medium text-gray-900">{{ $character->element }}</td>
-                    <td class="font-medium text-gray-900">{{ $character->type }}</td>
-                    <td>
-                        <a href="{{ route('characters.edit', $character) }}" class="btn btn-primary btn-sm">Edit</a>
-                        <form action="{{ route('characters.destroy', $character) }}" method="POST" class="d-inline-block">
-                            @method('DELETE')
-                            @csrf
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-            @empty
-                <tr>
-                    <td colspan="8">No character found.</td>
-                </tr>
-            @endforelse
-        </tbody>
-    </table>
-
-    <div class="d-flex justify-content-center">
+        <div class="d-flex justify-content-center">
         <nav class="mt-4">
             <ul class="pagination">
-
+                {{-- Previous Page Link --}}
                 @if ($characters->onFirstPage())
                     <li class="page-item disabled"><span class="page-link">&laquo; Previous</span></li>
                 @else
@@ -64,7 +50,7 @@
                     </li>
                 @endif
 
-
+                {{-- Pagination Elements --}}
                 @foreach ($characters->links()->elements[0] as $page => $url)
                     @if ($page == $characters->currentPage())
                         <li class="page-item active"><span class="page-link bg-blue-500 text-white">{{ $page }}</span></li>
@@ -73,7 +59,7 @@
                     @endif
                 @endforeach
 
-
+                {{-- Next Page Link --}}
                 @if ($characters->hasMorePages())
                     <li class="page-item">
                         <a href="{{ $characters->nextPageUrl() }}" class="page-link text-blue-500 hover:text-blue-700">Next &raquo;</a>
@@ -84,5 +70,5 @@
             </ul>
         </nav>
     </div>
-</div>
+    </div>
 @endsection

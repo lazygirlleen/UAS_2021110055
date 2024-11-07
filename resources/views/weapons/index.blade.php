@@ -20,16 +20,19 @@
 
                         <h5 class="card-title">{{ '#' . Str::padLeft($weapon->id, 4, '0') }}</h5>
 
+                        <a href="{{ route('weapons.show', $weapon->id) }}" class="stretched-link">
                             <h5 class="card-title">{{ $weapon->name }}</h5>
                         </a>
-                        <p class="card-text">{{ $weapon->type }}</p>
+
+                        <p class="card-text">{{ $weapon->weapon_type }}</p>
                         <p class="card-text badge rounded-pill bg-success">{{ $weapon->rarity }} star</p>
                     </div>
                 </div>
             </div>
+
         @empty
             <div class="col-12">
-                <p class="text-center">No Pokemon found.</p>
+                <p class="text-center">No Weapon found.</p>
             </div>
         @endforelse
 

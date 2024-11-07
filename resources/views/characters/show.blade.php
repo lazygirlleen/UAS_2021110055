@@ -5,10 +5,10 @@
 @section('content')
 
 <div class="max-w-2xl mx-auto mt-8 p-6 bg-white">
-  <h1 class="text-3xl font-bold text-gray-800 mb-6">Character Details</h1>
+    <h1 class="text-3xl font-bold text-gray-800 mb-6">Character Details</h1>
 
-  @if ($character->avatar)
-    <img src="{{ $character->avatar_url }}" class="rounded img-thumbnail mx-auto d-block my-3" alt="{{ $character->name }}" />
+    @if ($character->avatar)
+        <img src="{{ $character->avatar_url }}" class="rounded img-thumbnail mx-auto d-block my-3" alt="{{ $character->name }}" />
     @endif
 
 
@@ -44,6 +44,12 @@
 
 
   <div class="container py-10 px-10 mx-0 min-w-full flex flex-col items-center">
+  <a href="{{ route('characters.edit', $character) }}" class="btn btn-primary">Edit</a>
+        <form action="{{ route('characters.destroy', $character) }}" method="POST" style="display:inline;">
+            @csrf
+                @method('DELETE')
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus Character ini?');">Delete</button>
+        </form>
         <button class=" bg-black  text-white  py-2 px-4 mt-3 rounded">
         <a href="{{ route('characters.index') }}" class="px-6 py-2 bg-black text-white font-semibold shadow hover:bg-blue-600 transition rounded items-center">
             Back

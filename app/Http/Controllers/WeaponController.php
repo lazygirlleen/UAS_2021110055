@@ -33,7 +33,10 @@ class WeaponController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'rarity' => 'required|integer|in:4,5',
-            'type' => 'required|string|max:255',
+            'weapon_type' => 'required|string|max:255',
+            'base_atk' => 'required|integer|max:5',
+            'secondary_stat' => 'required|integer|max:5',
+            'secondary_stat_value'  => 'required|integer|max:5',
         ]);
 
         Weapon::create($validated);
@@ -44,9 +47,9 @@ class WeaponController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Weapon $category)
+    public function show(Weapon $weapon)
     {
-        //
+        return view('weapons.show', compact('weapon'));
     }
 
     /**
@@ -60,15 +63,18 @@ class WeaponController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Weapon $category)
+    public function update(Request $request, Weapon $weapons)
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'rarity' => 'required|integer|in:4,5',
-            'type' => 'required|string|max:255',
+            'weapon_type' => 'required|string|max:255',
+            'base_atk' => 'required|integer|max:5',
+            'secondary_stat' => 'required|integer|max:5',
+            'secondary_stat_value'  => 'required|integer|max:5',
         ]);
 
-        $category->update($validated);
+        $weapons->update($validated);
 
         return redirect()->route('weapons.index')->with('Success', 'Weapon updated successfully');
     }
@@ -76,9 +82,9 @@ class WeaponController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Weapon $category)
+    public function destroy(Weapon $weapons)
     {
-        $category->delete();
+        $weapons->delete();
         return redirect()->route('weapons.index')->with('success', 'Weapon delete succesfully');
     }
 }
