@@ -1,33 +1,37 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="mt-4 p-5 bg-black text-white">
-        <h1>All Characters</h1>
-        <a href="{{ route('characters.create') }}" class="btn btn-primary btn-sm">Add New Character</a>
+<div class="mt-4 p-5 text-center font-bold py-4 uppercase">
+    <h1>All Characters</h1>
+    <a href="{{ route('characters.create') }}" class="btn btn-primary btn-sm">Add New Character</a>
+</div>
+
+@if (session()->has('success'))
+    <div class="alert alert-success mt-4">
+        {{ session()->get('success') }}
     </div>
+@endif
 
-    @if (session()->has('success'))
-        <div class="alert alert-success mt-4">
-            {{ session()->get('success') }}
-        </div>
-    @endif
-    <div class="container">
+<div class="container">
     <div class="row g-4 mt-4">
-        @forelse ($characters as $topup)
+        @forelse ($characters as $character)
             <div class="col-md-4 mb-4">
-                <div class="card h-100">
+                <div class="card h-100 text-center w-96 flex flex-col rounded-xl bg-white shadow-md text-gray-700">
                     <div class="card-body">
-
-                        <h5 class="card-title">{{ '#' . Str::padLeft($topup->id, 4, '0') }}</h5>
-
-                        <a href="{{ route('characters.show', $topup->id) }}" class="stretched-link">
-                            <h5 class="card-title">{{ $topup->name }}</h5>
+                    @if ($character->avatar)
+                        <img src="{{ $character->avatar_url }}" class="rounded img-thumbnail mx-auto d-block my-3" alt="{{ $character->name }}" />
+                    @endif
+                        <a>
+                            <h5 class="mb-2 text-xl font-bold dark:text-black">{{ $character->name }}</h5>
                         </a>
-
-                        <p class="card-text">{{ $topup->element }}</p>
-                        <p class="card-text">{{ $topup->weapon_type }}</p>
-                        <p class="card-text badge rounded-pill bg-success">{{ $topup->rarity }} Star</p>
-
+                        <p class="card-text text-base font-light">{{ $character->nation }}</p>
+                        <p class="card-text text-base font-light">{{ $character->element }}</p>
+                        <p class="badge bg-success">{{ $character->rarity }} Star</p>
+                        <p><button class=" btn btn-light btn-sm text-white">
+                            <a href="{{ route('characters.show', $character->id) }}">
+                            Detail
+                            </a>
+                        </button></p>
 
                     </div>
                 </div>
@@ -37,9 +41,10 @@
                 <p class="text-center">No Character found.</p>
             </div>
         @endforelse
+    </div>
 
-        <div class="d-flex justify-content-center">
-        <nav class="mt-4">
+    <div class="d-flex justify-content-center mt-4">
+        <nav>
             <ul class="pagination">
                 {{-- Previous Page Link --}}
                 @if ($characters->onFirstPage())
@@ -70,5 +75,5 @@
             </ul>
         </nav>
     </div>
-    </div>
+</div>
 @endsection

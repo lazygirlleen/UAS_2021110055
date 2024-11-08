@@ -17,7 +17,7 @@ class TopupController extends Controller
      */
     public function create()
     {
-        //
+        return view('topups.create');
     }
     /**
      * Store a newly created resource in storage.

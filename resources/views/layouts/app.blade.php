@@ -18,16 +18,16 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg- text-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-black bg-text-black shadow-sm">
             <div class="container">
 
                 @auth
-                    <ul class="navbar-nav me-auto">
+                    <ul class="navbar-nav me-auto ">
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config( 'Genshin Impact') }} Genshin Impact
                     </a>
                     <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}">Home</a>
+                            <a class="nav-link " href="{{ route('home') }}">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('characters.index') }}">Character</a>

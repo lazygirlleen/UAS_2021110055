@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="mt-4 p-5 bg-black text-white">
+<div class="mt-4 p-5 text-center font-bold py-4 uppercase">
         <h1>All Weapons</h1>
     </div>
 
@@ -14,7 +14,7 @@
         <div class="row g-4 mt-4">
         @forelse ($weapons as $weapon)
             <div class="col-md-4 mb-4">
-                <div class="card h-100">
+                <div class="card h-100 ">
                     <div class="card-body">
 
                         <h5 class="card-title">{{ '#' . Str::padLeft($weapon->id, 4, '0') }}</h5>
