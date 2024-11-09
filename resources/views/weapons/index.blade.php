@@ -19,7 +19,7 @@
 
                         <h5 class="card-title">{{ '#' . Str::padLeft($weapon->id, 4, '0') }}</h5>
 
-                        <a href="{{ route('weapons.show', $weapon->id) }}" class="stretched-link">
+                        <a href="{{ route('weapons.show', $weapon->id) }}" class="text-slate-800 font-semibold text-sm hover:underline flex items-center">
                             <h5 class="card-title">{{ $weapon->name }}</h5>
                         </a>
 

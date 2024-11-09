@@ -16,7 +16,7 @@
     <div class="row g-4 mt-4">
         @forelse ($characters as $character)
             <div class="col-md-4 mb-4">
-                <div class="card h-100 text-center w-96 flex flex-col rounded-xl bg-white shadow-md text-gray-700">
+                <div class="card h-100 text-center w-96 flex flex-col rounded-xl bg-gray-800 text-gray-700">
                     <div class="card-body">
                     @if ($character->avatar)
                         <img src="{{ $character->avatar_url }}" class="rounded img-thumbnail mx-auto d-block my-3" alt="{{ $character->name }}" />
