@@ -1,10 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="mt-4 p-5 text-center font-bold py-4 uppercase">
-    <h1>All Characters</h1>
-    <a href="{{ route('characters.create') }}" class="btn btn-primary btn-sm">Add New Character</a>
+<div class="p-5 text-center font-bold py-4 text-green">
+    <h1 class="text-green text-3xl">All Characters</h1>
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+        <a href="{{ route('characters.create') }}">Add New Character</a>
+    </button>
 </div>
+
 
 @if (session()->has('success'))
     <div class="alert alert-success mt-4">
@@ -15,9 +18,11 @@
 <div class="container">
     <div class="row g-4 mt-4">
         @forelse ($characters as $character)
+        <div class="container mx-auto mb-3">
             <div class="col-md-4 mb-4">
-                <div class="card h-100 text-center w-96 flex flex-col rounded-xl bg-gray-800 text-gray-700">
-                    <div class="card-body">
+            <div class="max-w-sm rounded overflow-hidden shadow-lg">
+            <div class="card-body">
+        <div class="bg-gray-500 rounded-lg transition-transform transform  duration-300 mb-3">
                     @if ($character->avatar)
                         <img src="{{ $character->avatar_url }}" class="rounded img-thumbnail mx-auto d-block my-3" alt="{{ $character->name }}" />
                     @endif
@@ -41,6 +46,7 @@
                 <p class="text-center">No Character found.</p>
             </div>
         @endforelse
+    </div>
     </div>
 
     <div class="d-flex justify-content-center mt-4">

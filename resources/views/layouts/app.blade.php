@@ -10,8 +10,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <!-- <link rel="dns-prefetch" href="//fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet"> -->
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -19,27 +19,21 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-black bg-text-black shadow-sm">
-            <div class="container">
-
+       <nav class="border-gray-200 px-2 mb-10">
+        <div class="container mx-auto flex flex-wrap items-center justify-between">
                 @auth
-                    <ul class="navbar-nav me-auto ">
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config( 'Genshin Impact') }} Genshin Impact
                     </a>
-                    <li class="nav-item">
                             <a class="nav-link " href="{{ route('home') }}">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('characters.index') }}">Character</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('weapons.index') }}">Weapon</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('topups.create') }}">Topup</a>
-                        </li>
 
+                            <a class="nav-link" href="{{ route('characters.index') }}">Character</a>
+
+
+                            <a class="nav-link" href="{{ route('weapons.index') }}">Weapon</a>
+
+
+                            <a class="nav-link" href="{{ route('topups.create') }}">Topup</a>
                     </ul>
                     @endauth
 
@@ -54,7 +48,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
+
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
