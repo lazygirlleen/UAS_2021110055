@@ -19,15 +19,16 @@
             </style>
         @endif
     </head>
-    <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-                <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
+  
+    <body class="font-sans antialiased dark:bg-green-house-100 dark:text-white/50">
+    <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
 
                         @if (Route::has('login'))
                             <nav class="-mx-3 flex flex-1 justify-end">
                                 @auth
                                     <a
                                         href="{{ url('/home') }}"
-                                        class=" text-gray-600 text-base hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                                        class="mt-3 text-white hover:text-green overflow-hidden transform transition-transform hover:scale-105"
                                     >
                                         Dashboard
                                     </a>
@@ -53,17 +54,18 @@
                     </header>
 
                     <body>
-                        <div class="max-w-md  m-24 rounded overflow-hidden shadow-lg">
+                    <div class="flex items-center justify-center min-h-screen bg-gray-100">
+                        <div class="w-full max-w-md p-5 bg-white rounded-lg shadow-md">
                         <class="py-20" style="background: linear-gradient(90deg, #667eea 0%, #764ba2 100%)">
                         <div class="container mx-auto px-6">
-                            <h2 class="text-4xl font-bold mb-2 text-white">
+                            <h2 class="text-4xl font-bold mb-2 text-green">
                                 Welcome to Genshin Impact Website
                             </h2>
-                            <h3 class="text-2xl mb-8 text-gray-200">
+                            <h3 class="text-2xl mb-8 text-green">
                             You can see various Genshin character, weapon recommendation, artefact recommendation, and in game transactions
                             </h3>
 
-                            <button class="bg-white font-bold rounded-full py-4 px-8 shadow-lg uppercase tracking-wider text-black">
+                            <button class="w-full py-2 px-4 bg-green text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">
                             Learn More
                             </button>
                         </div>

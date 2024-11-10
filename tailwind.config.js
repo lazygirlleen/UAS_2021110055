@@ -13,8 +13,6 @@ module.exports = {
         xl: '1440px',
       },
       colors: {
-        transparent: 'transparent',
-        current: 'currentColor',
         'white': '#ffffff',
         'purple': '#3f3cbb',
         'midnight': '#121063',
@@ -24,6 +22,10 @@ module.exports = {
         'bubble-gum': '#ff77e9',
         'bermuda': '#78dcca',
         'green': '#38C172',
+        'blue': '#3b82f6',
+        'green-house-50': '#F0FFE4',
+        'green-house-100': '#DEFFC5',
+        'cream': '#ede9e0'
       },
       fontFamily: {
         sans: ['Graphik', 'sans-serif'],

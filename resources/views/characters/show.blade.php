@@ -4,14 +4,13 @@
 
 @section('content')
 
-<div class="max-w-2xl mx-auto mt-8 p-6 bg-white">
-<div class="mt-4 p-5 bg-black text-white">
-    <h1 class="text-3xl font-bold text-gray-800 mb-6">Character Details</h1>
+<div class="p-3 text-center font-bold py-4 text-green">
+<div class="text-green text-3xl">
+    <h1 class="text-3xl font-bold text-gray-800 mb-3">Character Details</h1>
 </div>
 </div>
-
-    @if ($character->avatar)
-        <img src="{{ $character->avatar_url }}" class="rounded img-thumbnail mx-auto d-block my-3" alt="{{ $character->name }}" />
+@if ($character->avatar)
+        <img src="{{ asset('storage/' . $character->avatar) }}" class="rounded img-thumbnail mx-auto d-block my-3" alt="{{ $character->name }}" />
     @endif
 
 
@@ -31,14 +30,17 @@
             <td class="p-4 text-gray-700">{{ $character->nation }}</td>
         </tr>
         <tr>
+        <tr class="bg-gray-100 border-b">
             <th class="text-left p-4 font-semibold text-gray-700">Element</th>
             <td class="p-4 text-gray-700">{{ $character->element }}</td>
         </tr>
         <tr>
+        <tr class="bg-gray-100 border-b">
             <th class="text-left p-4 font-semibold text-gray-700">Weapon</th>
             <td class="p-4 text-gray-700">{{ $character->type }}</td>
         </tr>
         <tr>
+        <tr class="bg-gray-100 border-b">
             <th class="text-left p-4 font-semibold text-gray-700">Faction</th>
             <td class="p-4 text-gray-700">{{ $character->faction }}</td>
         </tr>

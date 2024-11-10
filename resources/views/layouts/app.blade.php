@@ -3,90 +3,62 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Fonts -->
-    <!-- <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet"> -->
-
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
 </head>
-<body>
+<body class="bg-green-house-50 font-sans antialiased">
     <div id="app">
-       <nav class="border-gray-200 px-2 mb-10">
-        <div class="container mx-auto flex flex-wrap items-center justify-between">
-                @auth
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config( 'Genshin Impact') }} Genshin Impact
+        <nav class="bg-green text-white px-4 py-3 mb-10 shadow-md">
+            <div class="container mx-auto flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <a href="{{ url('/') }}" class="text-xl font-semibold text-gray-800 hover:text-blue-600">
+                        {{ config('Teyvat Nexus') }} Teyvat Nexus
                     </a>
-                            <a class="nav-link " href="{{ route('home') }}">Home</a>
-
-                            <a class="nav-link" href="{{ route('characters.index') }}">Character</a>
-
-
-                            <a class="nav-link" href="{{ route('weapons.index') }}">Weapon</a>
-
-
-                            <a class="nav-link" href="{{ route('topups.create') }}">Topup</a>
-                    </ul>
+                    @auth
+                        <a href="{{ route('home') }}" class="text-gray-700 hover:text-green-house-100  overflow-hidden transform transition-transform hover:scale-105">Home</a>
+                        <a href="{{ route('characters.index') }}" class="text-gray-700 hover:text-green-house-100 overflow-hidden transform transition-transform hover:scale-105">Character</a>
+                        <a href="{{ route('weapons.index') }}" class="text-gray-700 hover:text-green-house-100 overflow-hidden transform transition-transform hover:scale-105">Weapon</a>
+                        <a href="{{ route('topups.create') }}" class="text-gray-700 hover:text-green-house-100 overflow-hidden transform transition-transform hover:scale-105">Topup</a>
+                        <a href="{{ route('accounts.index') }}" class="text-gray-700 hover:text-green-house-100 overflow-hidden transform transition-transform hover:scale-105">Your Account</a>
                     @endauth
+                </div>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                <div class="flex items-center space-x-4">
+                    @guest
+                        @if (Route::has('login'))
+                            <a href="{{ route('login') }}" class="text-gray-700 hover:text-blue-600">Login</a>
+                        @endif
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="text-gray-700 hover:text-blue-600">Register</a>
+                        @endif
+                    @else
+                        <div class="relative">
+                            <button class="flex items-center text-gray-700 hover:text-blue-600 focus:outline-none">
+                                {{ Auth::user()->name }}
+                                <svg class="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06 0L10 10.92l3.71-3.71a.75.75 0 111.06 1.06l-4 4a.75.75 0 01-1.06 0l-4-4a.75.75 0 010-1.06z" clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                            <div class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10 hidden">
+                                <a href="{{ route('logout') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
                                 </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                                    @csrf
+                                </form>
+                            </div>
+                        </div>
+                    @endguest
                 </div>
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="container mx-auto py-4">
             @yield('content')
         </main>
     </div>

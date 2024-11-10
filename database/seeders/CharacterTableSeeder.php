@@ -7,9 +7,8 @@ use Illuminate\Support\Facades\DB;
 
 class CharacterTableSeeder extends Seeder
 {
-
     /**
-     * Auto generated seed file
+     * Run the database seeds.
      *
      * @return void
      */
@@ -17,7 +16,7 @@ class CharacterTableSeeder extends Seeder
     {
         DB::table('characters')->delete();
 
-        DB::table('characters')->insert(array (
+        DB::table('characters')->insert([
             [
                 'name' => 'Amber',
                 'rarity' => 4,
@@ -25,7 +24,7 @@ class CharacterTableSeeder extends Seeder
                 'element' => 'Pyro',
                 'type' => 'Bow',
                 'faction' => 'Knight of Favonius',
-                'avatar' => 'public/Amber.png'
+                'avatar' => 'Amber.png'
             ],
             [
                 'name' => 'Barbara',
@@ -34,7 +33,7 @@ class CharacterTableSeeder extends Seeder
                 'element' => 'Hydro',
                 'type' => 'Catalyst',
                 'faction' => 'Church of Favonius',
-                'avatar' => 'public/Barbara.png'
+                'avatar' => 'Barbara.png'
             ],
             [
                 'name' => 'Jean',
@@ -43,7 +42,7 @@ class CharacterTableSeeder extends Seeder
                 'element' => 'Anemo',
                 'type' => 'Sword',
                 'faction' => 'Knight of Favonius',
-                'avatar' => 'public/Jean.png'
+                'avatar' => 'Jean.png'
             ],
             [
                 'name' => 'Diluc',
@@ -52,7 +51,7 @@ class CharacterTableSeeder extends Seeder
                 'element' => 'Pyro',
                 'type' => 'Claymore',
                 'faction' => 'Dawn Winery',
-                'avatar' => 'public/Diluc.png'
+                'avatar' => 'Diluc.png'
             ],
             [
                 'name' => 'Mona',
@@ -61,7 +60,7 @@ class CharacterTableSeeder extends Seeder
                 'element' => 'Hydro',
                 'type' => 'Catalyst',
                 'faction' => 'Monstadt',
-                'avatar' => 'public/Mona.png'
+                'avatar' => 'Mona.png'
             ],
             [
                 'name' => 'Kaeya',
@@ -70,7 +69,7 @@ class CharacterTableSeeder extends Seeder
                 'element' => 'Cryo',
                 'type' => 'Sword',
                 'faction' => 'Knight of Favonius',
-                'avatar' => 'public/Kaeya.png'
+                'avatar' => 'Kaeya.png'
             ],
             [
                 'name' => 'Venti',
@@ -79,7 +78,7 @@ class CharacterTableSeeder extends Seeder
                 'element' => 'Anemo',
                 'type' => 'Bow',
                 'faction' => 'Monstadt',
-                'avatar' => 'public/Venti.png'
+                'avatar' => 'Venti.png'
             ],
             [
                 'name' => 'Lisa',
@@ -88,7 +87,7 @@ class CharacterTableSeeder extends Seeder
                 'element' => 'Electro',
                 'type' => 'Catalyst',
                 'faction' => 'Knight of Favonius',
-                'avatar' => 'public/Lisa.png'
+                'avatar' => 'Lisa.png'
             ],
             [
                 'name' => 'Klee',
@@ -97,7 +96,7 @@ class CharacterTableSeeder extends Seeder
                 'element' => 'Pyro',
                 'type' => 'Catalyst',
                 'faction' => 'Knight of Favonius',
-                'avatar' => 'public/Klee.png'
+                'avatar' => 'Klee.png'
             ],
             [
                 'name' => 'Razor',
@@ -106,7 +105,7 @@ class CharacterTableSeeder extends Seeder
                 'element' => 'Electro',
                 'type' => 'Claymore',
                 'faction' => 'Wolvendom',
-                'avatar' => 'public/Razor.png'
+                'avatar' => 'Razor.png'
             ],
             [
                 'name' => 'Bennet',
@@ -115,7 +114,7 @@ class CharacterTableSeeder extends Seeder
                 'element' => 'Pyro',
                 'type' => 'Sword',
                 'faction' => 'Adventurers Guild',
-                'avatar' => 'public/Bennet.png'
+                'avatar' => 'Bennet.png'
             ],
             [
                 'name' => 'Noelle',
@@ -124,7 +123,7 @@ class CharacterTableSeeder extends Seeder
                 'element' => 'Geo',
                 'type' => 'Claymore',
                 'faction' => 'Knight of Favonius',
-                'avatar' => 'public/Noelle.png'
+                'avatar' => 'Noelle.png'
             ],
             [
                 'name' => 'Fischl',
@@ -133,7 +132,7 @@ class CharacterTableSeeder extends Seeder
                 'element' => 'Electro',
                 'type' => 'Bow',
                 'faction' => 'Adventurers Guild',
-                'avatar' => 'public/Fischl.png'
+                'avatar' => 'Fischl.png'
             ],
             [
                 'name' => 'Sucrose',
@@ -142,7 +141,7 @@ class CharacterTableSeeder extends Seeder
                 'element' => 'Anemo',
                 'type' => 'Catalyst',
                 'faction' => 'Knight of Favonius',
-                'avatar' => 'public/Sucrose.png'
+                'avatar' => 'Sucrose.png'
             ],
             [
                 'name' => 'Diona',
@@ -151,7 +150,7 @@ class CharacterTableSeeder extends Seeder
                 'element' => 'Cryo',
                 'type' => 'Bow',
                 'faction' => 'The Cats Tail',
-                'avatar' => 'public/Diona.png'
+                'avatar' => 'Diona.png'
             ],
             [
                 'name' => 'Albedo',
@@ -160,7 +159,7 @@ class CharacterTableSeeder extends Seeder
                 'element' => 'Geo',
                 'type' => 'Sword',
                 'faction' => 'Knight of Favonius',
-                'avatar' => 'public/Albedo.png'
+                'avatar' => 'Albedo.png'
             ],
             [
                 'name' => 'Rosaria',
@@ -169,7 +168,7 @@ class CharacterTableSeeder extends Seeder
                 'element' => 'Cryo',
                 'type' => 'Polearm',
                 'faction' => 'Church of Favonious',
-                'avatar' => 'public/Rosaria.png'
+                'avatar' => 'Rosaria.png'
             ],
             [
                 'name' => 'Eula',
@@ -178,7 +177,7 @@ class CharacterTableSeeder extends Seeder
                 'element' => 'Cryo',
                 'type' => 'Claymore',
                 'faction' => 'Knight of Favonius',
-                'avatar' => 'public/Eula.png'
+                'avatar' => 'Eula.png'
             ],
             [
                 'name' => 'Mika',
@@ -187,7 +186,7 @@ class CharacterTableSeeder extends Seeder
                 'element' => 'Cryo',
                 'type' => 'Polearm',
                 'faction' => 'Knight of Favonius',
-                'avatar' => 'public/Mika.png'
+                'avatar' => 'Mika.png'
             ],
             [
                 'name' => 'Aloy',
@@ -196,12 +195,8 @@ class CharacterTableSeeder extends Seeder
                 'element' => 'Cryo',
                 'type' => 'Bow',
                 'faction' => 'Wandering Heroine',
-                'avatar' => 'public/Aloy.png'
+                'avatar' => 'Aloy.png'
             ]
-
-
-
-        )
-    );
+        ]);
     }
 }

@@ -17,8 +17,8 @@ return new class extends Migration
             $table->integer('rarity');
             $table->string('nation');
             $table->string('element');
-            $table->string('faction');
-            $table->string('type');
+            $table->string('faction')->nullable();
+            $table->string('type')->nullable();
             $table->string('avatar')->nullable();
             $table->timestamps();
         });

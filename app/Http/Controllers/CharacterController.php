@@ -14,12 +14,11 @@ class CharacterController extends Controller
      */
     public function __construct()
     {
-       $this->middleware('auth')->except('index'); //seluruh fungsi hrs melewati auth kecuali index
-   }
+       $this->middleware('auth')->except('index'); // seluruh fungsi hrs melewati auth kecuali index
+    }
 
     public function index()
     {
-
         $characters = Character::paginate(9);
         return view('characters.index', compact('characters'));
     }
@@ -41,6 +40,45 @@ class CharacterController extends Controller
         return view('characters.edit', compact('character', 'weapons'));
     }
 
+    public function create()
+    {
+        return view('characters.create');
+    }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'rarity' => 'required|integer|in:4,5',
+            'nation' => 'required|string|max:13',
+            'element' => 'required|string|max:13',
+            'weapon' => 'required|string|max:13',
+            'faction' => 'required|string|max:255',
+            'weapon_name' => 'nullable|exists:weapons,name'
+        ]);
+
+
+        $character = Character::create($validated);
+
+
+        if ($request->hasFile('avatar')) {
+            $request->validate([
+            'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            ]);
+
+            $imagePath = $request->file('avatar')->store('public/images');
+            $character->avatar = str_replace('public/', '', $imagePath);
+            $character->save();
+        }
+
+      
+        if ($request->has('weapons')) {
+            $character->weapons()->sync($request->input('weapons'));
+        }
+
+        return redirect()->route('characters.index')->with('success', 'Character created successfully');
+    }
+
     /**
      * Update the specified resource in storage.
      */
@@ -56,38 +94,54 @@ class CharacterController extends Controller
             'weapon_name' => 'nullable|exists:weapons,name'
         ]);
 
-        if($request->hasFile('avatar')){
+        // Handle avatar upload
+        if ($request->hasFile('avatar')) {
             $request->validate([
-                'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg,webp,svg|max:2048',
+                'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             ]);
-            $imagePath = $request->file('avatar')->storePublicly('public/images');
 
-            if($character->avatar){
-                Storage::delete($character->avatar);
+            // Store the uploaded file
+            $imagePath = $request->file('avatar')->store('public/images');
+            $validated['avatar'] = str_replace('public/', '', $imagePath); // Remove 'public/' for storage
+
+            // Delete the old avatar if it exists
+            if ($character->avatar) {
+                Storage::delete('public/' . $character->avatar);
             }
-            $validated['avatar'] = $imagePath;
         }
 
-        $character = Character::create([
-            'name'=> $validated['name'],
-            'rarity'=> $validated['rarity'],
-            'nation'=> $validated['nation'],
-            'element'=> $validated['element'],
-            'weapon'=> $validated['weapon'],
-            'faction'=> $validated['faction'],
-            'weapon_name'=> $validated['weapon_name'] ?? null,
+        // Update character attributes
+        $character->update([
+            'name' => $validated['name'],
+            'rarity' => $validated['rarity'],
+            'nation' => $validated['nation'],
+            'element' => $validated['element'],
+            'weapon' => $validated['weapon'],
+            'faction' => $validated['faction'],
+            'weapon_name' => $validated['weapon_name'] ?? null,
+            'avatar' => $validated['avatar'] ?? $character->avatar, // Use new or existing avatar
         ]);
 
-        if($request->has('weapons')) {
+        // Sync selected weapons
+        if ($request->has('weapons')) {
             $character->weapons()->sync($request->input('weapons'));
         }
 
-        return redirect()->route('characters.index')->with('success', 'Character update succesfully');
+        return redirect()->route('characters.index')->with('success', 'Character updated successfully');
     }
-
 
     /**
      * Remove the specified resource from storage.
      */
+    public function destroy(Character $character)
+    {
+        // Delete avatar image
+        if ($character->avatar) {
+            Storage::delete('public/' . $character->avatar);
+        }
 
+        $character->delete();
+
+        return redirect()->route('characters.index')->with('success', 'Character deleted successfully');
+    }
 }

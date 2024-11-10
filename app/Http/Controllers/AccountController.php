@@ -7,12 +7,17 @@ use Illuminate\Http\Request;
 
 class AccountController extends Controller
 {
+    public function __construct()
+    {
+       $this->middleware('auth')->except('index'); // seluruh fungsi hrs melewati auth kecuali index
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $accounts = Account::paginate(9);
+        return view('accounts.index', compact('accounts'));
     }
 
     /**

@@ -3,8 +3,10 @@
 @section('content')
 <div class="p-5 text-center font-bold py-4 text-green">
     <h1 class="text-green text-3xl">All Characters</h1>
-    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
-        <a href="{{ route('characters.create') }}">Add New Character</a>
+    <button class="mt-3 py-2 px-4 bg-green text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">
+    <a href="{{ route('characters.create') }}" class="btn btn-primary btn-sm">
+        Add New Character
+    </a>
     </button>
 </div>
 
@@ -15,71 +17,74 @@
     </div>
 @endif
 
-<div class="container">
-    <div class="row g-4 mt-4">
+<div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
         @forelse ($characters as $character)
-        <div class="container mx-auto mb-3">
-            <div class="col-md-4 mb-4">
-            <div class="max-w-sm rounded overflow-hidden shadow-lg">
-            <div class="card-body">
-        <div class="bg-gray-500 rounded-lg transition-transform transform  duration-300 mb-3">
+            <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-transform hover:scale-105">
+                <div class="bg-gray-500 rounded-t-lg overflow-hidden">
                     @if ($character->avatar)
-                        <img src="{{ $character->avatar_url }}" class="rounded img-thumbnail mx-auto d-block my-3" alt="{{ $character->name }}" />
+                        <img src="{{ $character->avatar_url }}" alt="{{ $character->name }}" class="w-full h-48 object-cover">
                     @endif
-                        <a>
-                            <h5 class="mb-2 text-xl font-bold dark:text-black">{{ $character->name }}</h5>
-                        </a>
-                        <p class="card-text text-base font-light">{{ $character->nation }}</p>
-                        <p class="card-text text-base font-light">{{ $character->element }}</p>
-                        <p class="badge bg-success">{{ $character->rarity }} Star</p>
-                        <p><button class=" btn btn-light btn-sm text-white">
-                            <a href="{{ route('characters.show', $character->id) }}">
-                            Detail
-                            </a>
-                        </button></p>
-
+                </div>
+                <div class="p-4">
+                    <h5 class="text-xl font-bold text-gray-900">{{ $character->name }}</h5>
+                    <p class="text-base text-gray-700">{{ $character->nation }}</p>
+                    <p class="text-base text-gray-700">{{ $character->element }}</p>
+                    <span class="inline-block mt-2 px-3 py-1 text-sm font-medium bg-green-100 text-green-800 me-2 rounded dark:bg-green-900 dark:text-green-300">
+                        {{ $character->rarity }} Star
+                    </span>
+                    <div class="mt-4">
+                        <a href="{{ route('characters.show', $character->id) }}" class="block text-center text-white bg-blue-500 hover:bg-blue-600 py-2 px-4 rounded-lg">Detail</a>
                     </div>
                 </div>
             </div>
         @empty
-            <div class="col-12">
-                <p class="text-center">No Character found.</p>
+            <div class="col-span-full">
+                <p class="text-center text-gray-600">No Character found.</p>
             </div>
         @endforelse
     </div>
-    </div>
 
-    <div class="d-flex justify-content-center mt-4">
+    <div class="flex justify-center mt-8">
         <nav>
-            <ul class="pagination">
+            <ul class="inline-flex items-center space-x-1">
                 {{-- Previous Page Link --}}
                 @if ($characters->onFirstPage())
-                    <li class="page-item disabled"><span class="page-link">&laquo; Previous</span></li>
+                    <li class="page-item disabled">
+                        <span class="px-3 py-2 text-gray-500 bg-gray-200 rounded">&laquo; Previous</span>
+                    </li>
                 @else
                     <li class="page-item">
-                        <a href="{{ $characters->previousPageUrl() }}" class="page-link text-blue-500 hover:text-blue-700">&laquo; Previous</a>
+                        <a href="{{ $characters->previousPageUrl() }}" class="px-3 py-2 text-blue-500 bg-gray-100 hover:bg-gray-200 rounded">&laquo; Previous</a>
                     </li>
                 @endif
 
                 {{-- Pagination Elements --}}
                 @foreach ($characters->links()->elements[0] as $page => $url)
                     @if ($page == $characters->currentPage())
-                        <li class="page-item active"><span class="page-link bg-blue-500 text-white">{{ $page }}</span></li>
+                        <li class="page-item active">
+                            <span class="px-3 py-2 bg-blue-500 text-white rounded">{{ $page }}</span>
+                        </li>
                     @else
-                        <li class="page-item"><a href="{{ $url }}" class="page-link text-blue-500 hover:text-blue-700">{{ $page }}</a></li>
+                        <li class="page-item">
+                            <a href="{{ $url }}" class="px-3 py-2 text-blue-500 bg-gray-100 hover:bg-gray-200 rounded">{{ $page }}</a>
+                        </li>
                     @endif
                 @endforeach
 
                 {{-- Next Page Link --}}
                 @if ($characters->hasMorePages())
                     <li class="page-item">
-                        <a href="{{ $characters->nextPageUrl() }}" class="page-link text-blue-500 hover:text-blue-700">Next &raquo;</a>
+                        <a href="{{ $characters->nextPageUrl() }}" class="px-3 py-2 text-blue-500 bg-gray-100 hover:bg-gray-200 rounded">Next &raquo;</a>
                     </li>
                 @else
-                    <li class="page-item disabled"><span class="page-link">Next &raquo;</span></li>
+                    <li class="page-item disabled">
+                        <span class="px-3 py-2 text-gray-500 bg-gray-200 rounded">Next &raquo;</span>
+                    </li>
                 @endif
             </ul>
         </nav>
     </div>
+</div>
 </div>
 @endsection
