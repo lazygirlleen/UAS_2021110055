@@ -1,7 +1,10 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use App\Models\Topup;
 use Illuminate\Http\Request;
+
 class TopupController extends Controller
 {
     /**
@@ -10,8 +13,9 @@ class TopupController extends Controller
     public function index()
     {
         $topups = Topup::paginate(10);
-        return view('topups.index', compact('topups'));
+         return view('topups.index', compact('topups'));
     }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -19,13 +23,32 @@ class TopupController extends Controller
     {
         return view('topups.create');
     }
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        // Validasi data
+        $request->validate([
+            'id' => 'required|string|max:255',
+            'topup_type' => 'required|string',
+            'package' => 'required|string',
+            'payment_method' => 'required|string',
+        ]);
+
+        // Simpan data ke database
+        Topup::create([
+            'account_id' => $request->id,
+            'topup_type' => $request->topup_type,
+            'package' => $request->package,
+            'payment_method' => $request->payment_method,
+        ]);
+
+        // Redirect dengan pesan sukses
+        return redirect()->route('topups.index')->with('success', 'Top Up successfully added!');
     }
+
     /**
      * Display the specified resource.
      */
@@ -33,6 +56,7 @@ class TopupController extends Controller
     {
         //
     }
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -40,6 +64,7 @@ class TopupController extends Controller
     {
         //
     }
+
     /**
      * Update the specified resource in storage.
      */
@@ -47,6 +72,7 @@ class TopupController extends Controller
     {
         //
     }
+
     /**
      * Remove the specified resource from storage.
      */
@@ -54,5 +80,4 @@ class TopupController extends Controller
     {
         //
     }
-
 }

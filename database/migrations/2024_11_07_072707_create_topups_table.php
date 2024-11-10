@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('topups', function (Blueprint $table) {
             $table->id();
+            $table->string('account_id');
             $table->string('topup_type');
-            $table->integer('price');
-            $table->timestamp('transaction_date');
-            $table->string('status');
+            $table->string('package');
+            $table->string('payment_method');
+            $table->timestamp('transaction_date')->useCurrent();
+            $table->string('status')->default('pending');
         });
     }
 

@@ -40,19 +40,21 @@
                 </select>
             </div>
 
-            <div class="mb-4">
-                <label for="amount" class="block font-medium text-gray-700">Amount</label>
-                <input name="amount" id="amount" class="mt-1 p-2 border border-gray-300 rounded-lg w-full" required value="{{ old('amount') }}">
-            </div>
 
             <div>
-                <label for="package" class="block font-medium text-gray-700">Package</label>
-                <select class="mt-1 p-2 border border-gray-300 rounded-lg w-full" id="package" name="package" required>
-                    <option value="" disabled selected>Select Package</option>
-                    <option value="E-Wallet" {{ old('package') == 'E-Wallet' ? 'selected' : '' }}>E-Wallet</option>
-                    <option value="Transfer_Bank" {{ old('package') == 'Transfer_Bank' ? 'selected' : '' }}>Transfer Bank</option>
-                </select>
-            </div>
+    <label for="package" class="block font-medium text-gray-700">Package</label>
+    <select class="mt-1 p-2 border border-gray-300 rounded-lg w-full" id="package" name="package" required>
+        <option value="" disabled selected>Select Package</option>
+        <option value="60_Genesis_Crystals" {{ old('package') == '60_Genesis_Crystals' ? 'selected' : '' }}>60 Genesis Crystals</option>
+        <option value="330_Genesis_Crystals" {{ old('package') == '330_Genesis_Crystals' ? 'selected' : '' }}>300+30 Genesis Crystals</option>
+        <option value="1090_Genesis_Crystals" {{ old('package') == '1090_Genesis_Crystals' ? 'selected' : '' }}>980+110 Genesis Crystals</option>
+        <option value="2240_Genesis_Crystals" {{ old('package') == '2240_Genesis_Crystals' ? 'selected' : '' }}>1980+260 Genesis Crystals</option>
+        <option value="3880_Genesis_Crystals" {{ old('package') == '3880_Genesis_Crystals' ? 'selected' : '' }}>3280+600 Genesis Crystals</option>
+        <option value="8080_Genesis_Crystals" {{ old('package') == '8080_Genesis_Crystals' ? 'selected' : '' }}>6480+1600 Genesis Crystals</option>
+        <option value="Welkin_Moon" {{ old('package') == 'Welkin_Moon' ? 'selected' : '' }}>Blessing of the Welkin Moon</option>
+    </select>
+</div>
+
         </div>
 
         <div class="bg-white shadow-md rounded-lg p-6">

@@ -2,14 +2,19 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Topup extends Model
 {
+    use HasFactory;
+    public $timestamps = false;
+
     protected $fillable = [
-        'id',
+        'account_id',
         'topup_type',
-        'price',
+        'package',
+        'payment_method',
         'transaction_date',
         'status'
     ];
