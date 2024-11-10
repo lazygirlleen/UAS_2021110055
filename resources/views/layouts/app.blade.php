@@ -20,10 +20,10 @@
                     </a>
                     @auth
                         <a href="{{ route('home') }}" class="text-gray-700 hover:text-green-house-100  overflow-hidden transform transition-transform hover:scale-105">Home</a>
+                        <a href="{{ route('accounts.create') }}" class="text-gray-700 hover:text-green-house-100 overflow-hidden transform transition-transform hover:scale-105">Account</a>
                         <a href="{{ route('characters.index') }}" class="text-gray-700 hover:text-green-house-100 overflow-hidden transform transition-transform hover:scale-105">Character</a>
                         <a href="{{ route('weapons.index') }}" class="text-gray-700 hover:text-green-house-100 overflow-hidden transform transition-transform hover:scale-105">Weapon</a>
                         <a href="{{ route('topups.create') }}" class="text-gray-700 hover:text-green-house-100 overflow-hidden transform transition-transform hover:scale-105">Topup</a>
-                        <a href="{{ route('accounts.index') }}" class="text-gray-700 hover:text-green-house-100 overflow-hidden transform transition-transform hover:scale-105">Your Account</a>
                     @endauth
                 </div>
 

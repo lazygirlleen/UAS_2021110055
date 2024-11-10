@@ -3,11 +3,7 @@
 @section('content')
 <div class="p-5 text-center font-bold text-2xl">
     <h1 class="text-green text-3xl">Account</h1>
-    <button class="mt-3 py-2 px-4 bg-green text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">
-    <a href="{{ route('accounts.create') }}" class="btn btn-primary btn-sm">
-        Add Your Account
-    </a>
-    </button>
+    
 </div>
 
 @if (session()->has('success'))
