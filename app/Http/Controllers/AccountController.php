@@ -33,7 +33,21 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'email|string',
+            'location' => 'required|string',
+        ]);
+
+        // Simpan data ke database
+        Account::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'location' => $request->location,
+        ]);
+
+        // Redirect dengan pesan sukses
+        return redirect()->route('accounts.index')->with('success', 'Account successfully added!');
     }
 
     /**

@@ -30,7 +30,7 @@
     @endif
 </head>
 
-<body class="font-sans antialiased dark:bg-green-house-100 dark:text-white/50">
+<body class="font-sans antialiased dark:bg-green-house-50 dark:text-white/50">
     <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
 
         @if (Route::has('login'))
@@ -40,12 +40,12 @@
                         Dashboard
                     </a>
                 @else
-                    <a href="{{ route('login') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                    <a href="{{ route('login') }}" class="px-3 py-2 text-green ">
                         Log in
                     </a>
 
                     @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                        <a href="{{ route('register') }}" class=" px-3 py-2 text-green">
                             Register
                         </a>
                     @endif

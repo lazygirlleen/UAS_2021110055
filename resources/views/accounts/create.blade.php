@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Input New Pokemon')
+@section('title')
 
 @section('content')
 
 <div class="p-5 text-center font-bold py-4 text-green">
-    <h1 class="text-green text-3xl">Add New Account</h1>
+    <h1 class="text-green text-3xl">Add Your Account</h1>
 </div>
 
 <div class="row my-5">
@@ -20,7 +20,7 @@
             </div>
         @endif
 
-        <form action="{{ route('characters.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('accounts.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="bg-white shadow-md rounded-lg p-6 mb-4">
@@ -41,7 +41,7 @@
                 <h5 class="font-semibold text-lg mb-4">Choose Server</h5>
 
                 <label class="block text-gray-700">Server</label>
-                <select class="block w-full border border-gray-300 rounded-md p-2" id="server" name="server" required>
+                <select class="block w-full border border-gray-300 rounded-md p-2" id="location" name="location" required>
                     <option value=""></option>
                     <option value="Asia">Asia</option>
                     <option value="Europe">Europe</option>

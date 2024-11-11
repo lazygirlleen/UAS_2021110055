@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('jokis', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('account_id');
+            $table->string('joki_type');
+            $table->integer('payment_method');
+            $table->timestamp('transaction_date');
+            $table->string('status');
         });
     }
 

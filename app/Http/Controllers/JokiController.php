@@ -12,7 +12,8 @@ class JokiController extends Controller
      */
     public function index()
     {
-        //
+        $jokis = Joki::paginate(10);
+        return view('jokis.index', compact('jokis'));
     }
 
     /**
@@ -20,7 +21,7 @@ class JokiController extends Controller
      */
     public function create()
     {
-        //
+        return view('jokis.create');
     }
 
     /**
@@ -28,7 +29,22 @@ class JokiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+           // Validasi data
+           $request->validate([
+            'id' => 'required|string|max:255',
+            'joki_type' => 'required|string',
+            'payment_method' => 'required|string',
+        ]);
+
+        // Simpan data ke database
+        Joki::create([
+            'account_id' => $request->id,
+            'joki_type' => $request->topup_type,
+            'payment_method' => $request->payment_method,
+        ]);
+
+        // Redirect dengan pesan sukses
+        return redirect()->route('topups.index')->with('success', 'Top Up successfully added!');
     }
 
     /**

@@ -7,12 +7,17 @@ use Illuminate\Http\Request;
 
 class ArtefactController extends Controller
 {
+    public function __construct()
+    {
+       $this->middleware('auth')->except('index'); // seluruh fungsi hrs melewati auth kecuali index
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $artefacts = Artefact::paginate(9);
+        return view('artefacts.index', compact('artefacts'));
     }
 
     /**

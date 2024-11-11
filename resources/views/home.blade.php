@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="p-5 text-center font-bold py-4 uppercase">
+<div class="p-5 text-center font-bold py-4">
     <h1 class="font-bold text-green text-3xl">Welcome to Teyvat Nexus!</h1>
 </div>
 
@@ -13,12 +13,12 @@
         </div>
 
         <!-- Previous Button -->
-        <button @click="previous()" class="absolute left-5 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-gray-100 shadow-md">
+        <button @click="previous()" class="absolute left-5 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full shadow-md">
             <i class="fas fa-chevron-left text-2xl font-bold text-gray-500"></i>
         </button>
 
         <!-- Next Button -->
-        <button @click="forward()" class="absolute right-5 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-gray-100 shadow-md">
+        <button @click="forward()" class="absolute right-5 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full shadow-md">
             <i class="fas fa-chevron-right text-2xl font-bold text-gray-500"></i>
         </button>
 
@@ -42,9 +42,9 @@
     Alpine.data("imageSlider", () => ({
       currentIndex: 1,
       images: [
-        "{{ asset('storage/1.png') }}",
         "{{ asset('storage/2.png') }}",
         "{{ asset('storage/3.png') }}",
+        "{{ asset('storage/1.png') }}",
         "{{ asset('storage/4.png') }}"
       ],
       previous() {

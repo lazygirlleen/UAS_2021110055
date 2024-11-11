@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('artefacts', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('set');
+            $table->integer('rarity');
+            $table->string('set_bonus');
+
+
         });
     }
 
