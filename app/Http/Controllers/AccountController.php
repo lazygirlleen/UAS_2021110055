@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Account;
+use App\Models\Character;
 use Illuminate\Http\Request;
 
 class AccountController extends Controller
@@ -16,8 +17,9 @@ class AccountController extends Controller
      */
     public function index()
     {
-        $accounts = Account::paginate(9);
-        return view('accounts.index', compact('accounts'));
+        $characters = Character::all();
+        $accounts = Account::all();
+        return view('accounts.index', compact('characters', 'accounts'));
     }
 
     /**
@@ -25,7 +27,8 @@ class AccountController extends Controller
      */
     public function create()
     {
-        return view('accounts.create');
+        $characters = Character::all();
+        return view('accounts.create', compact('characters'));
     }
 
     /**
@@ -33,18 +36,14 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'name' => 'required|string',
             'email' => 'email|string',
             'location' => 'required|string',
+            'character_name' => 'nullable|exists:characters,name'
         ]);
 
-        // Simpan data ke database
-        Account::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'location' => $request->location,
-        ]);
+        Account::create($validated);
 
         // Redirect dengan pesan sukses
         return redirect()->route('accounts.index')->with('success', 'Account successfully added!');

@@ -42,7 +42,8 @@ class CharacterController extends Controller
 
     public function create()
     {
-        return view('characters.create');
+        $weapons = Weapon::all();
+        return view('characters.create', compact('weapons'));
     }
 
     public function store(Request $request)
@@ -71,7 +72,7 @@ class CharacterController extends Controller
             $character->save();
         }
 
-      
+
         if ($request->has('weapons')) {
             $character->weapons()->sync($request->input('weapons'));
         }

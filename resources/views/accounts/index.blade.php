@@ -4,7 +4,7 @@
 <div class="p-5 text-center font-bold text-2xl">
                 <h1 class="text-green text-3xl">Account</h1>
                 <button class="mt-3 py-2 px-4 bg-green text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">
-                    <a href="{{ route('topups.create') }}" class="btn btn-primary btn-sm">
+                    <a href="{{ route('accounts.create') }}" class="btn btn-primary btn-sm">
                         Add Account
                     </a>
                 </button>
@@ -26,6 +26,9 @@
                             <span class="block mt-2 px-3 py-1 text-sm font-medium bg-green-100 text-green-800">
                                 Server: {{ $account->location }}
                             </span>
+                            @foreach ($account->characters as $character)
+                                <span class="badge bg-primary">{{ $character->avatar }}</span>
+                            @endforeach
                         </div>
                     </div>
                 @empty

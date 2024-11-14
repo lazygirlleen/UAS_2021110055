@@ -47,9 +47,17 @@
                     <option value="Europe">Europe</option>
                     <option value="America">America</option>
                     <option value="TW">TW, HK, MO</option>
-
                 </select>
 
+                <div class="mt-3">
+                    <label for="character_name" class="block text-gray-700">Characters</label>
+                    <select id="character_name" name="characters[]" multiple class="mt-1 block w-full pl-3 pr-10 py-2 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">  
+
+                        @foreach ($characters as $character)
+                            <option value="{{ $character->name }}">{{ $character->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
             <button type="submit" class="bg-green text-white font-bold py-2 px-4 rounded mt-4 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">
                 Save
             </button>
