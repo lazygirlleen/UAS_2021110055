@@ -5,11 +5,10 @@
 @section('content')
 
 <div class="mt-4 p-5 bg-black text-white rounded">
-    <h1>Edit Character</h1>
+    <h1 class="text-green text-3xl">Edit Character</h1>
 </div>
 
-<div class="row my-5">
-    <div class="col-12 px-5">
+
         @if ($errors->any())
         <div class="alert alert-danger mt-4">
             <ul>
@@ -20,34 +19,38 @@
         </div>
         @endif
 
-        <form action="{{ route('characters.update', $weapon->id) }}" method="POST">
+        <form action="{{ route('characters.update', $character->id) }}" method="POST">
             @csrf
             @method('PUT')
 
-            <div class="form-group">
+
+            <div class="bg-white shadow-md rounded-lg p-6 mb-4">
+                <h5 class="font-semibold text-lg mb-4">Insert Character Name</h5>
                 <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" placeholder="Name" name="name" value="{{ old('name', $weapon->name) }}" required>
+                <input type="text" class="block w-full border border-gray-300 rounded-md p-2" id="name" placeholder="Name" name="name" value="{{ old('name', $character->name) }}" required>
             </div>
 
-            <div class="form-group mt-3">
+
+            <div class="bg-white shadow-md rounded-lg p-6 mb-4">
+                <h5 class="font-semibold text-lg mb-4">Choose Character Detail</h5>
                 <label for="rarity">Rarity</label>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="rarity" id="rarity_four" value="4" {{ old('rarity', $weapon->rarity) == 4 ? 'checked' : '' }}>
+                    <input class="form-check-input" type="radio" name="rarity" id="rarity_four" value="4" {{ old('rarity', $character->rarity) == 4 ? 'checked' : '' }}>
                     <label class="form-check-label" for="rarity_four">4</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="rarity" id="rarity_five" value="5" {{ old('rarity', $weapon->rarity) == 5 ? 'checked' : '' }}>
+                    <input class="form-check-input" type="radio" name="rarity" id="rarity_five" value="5" {{ old('rarity', $character->rarity) == 5 ? 'checked' : '' }}>
                     <label class="form-check-label" for="rarity_five">5</label>
                 </div>
-            </div>
+
 
 
             <div class="form-group mt-3">
                 <label for="nation">Nation</label>
-                <select class="form-select" id="nation" name="nation"  required value="{{ old(key: 'nation')}}">
+                <select class="block w-full border border-gray-300 rounded-md p-2" id="nation" name="nation"  required value="{{ old(key: 'nation')}}">
                 <option disabled>Choose a type</option>
                     @foreach (['Monstadt', 'Liyue', 'Inazuma', 'Sumeru', 'Fontaine', 'Natlan', 'Snezhnaya'] as $type)
-                        <option value="{{ $type }}" {{ old('nation', $weapon->nation) == $type ? 'selected' : '' }}>
+                        <option value="{{ $type }}" {{ old('nation', $character->nation) == $type ? 'selected' : '' }}>
                             {{ $type }}
                         </option>
                     @endforeach
@@ -56,10 +59,10 @@
 
             <div class="form-group mt-3">
                 <label for="element">Element</label>
-                <select class="form-select" id="element" name="element"  required value="{{ old(key: 'element')}}">
+                <select class="block w-full border border-gray-300 rounded-md p-2" id="element" name="element"  required value="{{ old(key: 'element')}}">
                 <option disabled>Choose a type</option>
                     @foreach (['Anemo', 'Geo', 'Electro', 'Dendro', 'Hydro', 'Pyro', 'Cryo'] as $type)
-                        <option value="{{ $type }}" {{ old('element', $weapon->element) == $type ? 'selected' : '' }}>
+                        <option value="{{ $type }}" {{ old('element', $character->element) == $type ? 'selected' : '' }}>
                             {{ $type }}
                         </option>
                     @endforeach
@@ -69,26 +72,37 @@
 
             <div class="form-group mt-3">
                 <label for="weapon">Weapon</label>
-                <select class="form-select" id="weapon" name="weapon"  required value="{{ old(key: 'weapon')}}">
-                <option disabled>Choose a type</option>
-                    @foreach (['Bow', 'Sword', 'Claymore', 'Catalyst', 'Polearm'] as $type)
-                        <option value="{{ $type }}" {{ old('weapon', $weapon->weapon) == $type ? 'selected' : '' }}>
-                            {{ $type }}
+                <select class="block w-full border border-gray-300 rounded-md p-2" id="weapon" name="weapon"  required value="{{ old(key: 'weapon')}}">
+                <option disabled>Choose a Weapon</option>
+                    @foreach (['Bow', 'Sword', 'Claymore', 'Catalyst', 'Polearm'] as $weapon)
+                        <option value="{{ $weapon }}" {{ old('weapon', $character->weapon) == $weapon ? 'selected' : '' }}>
+                            {{ $weapon }}
                         </option>
                     @endforeach
                 </select>
             </div>
 
             <div class="form-group mt-3">
+                    <label for="weapon_name">Characters Weapons</label>
+                    <select class="block w-full border border-gray-300 rounded-md p-2" name="weapons[]" multiple>
+                        @foreach ($weapons as $weapon)
+                            <option value="{{ $weapon->name }}" {{ $character->weapons->contains($weapon->name) ? "selected" : "" }}>
+                            {{ $weapon->name }}</option>
+                        @endforeach
+                    </select>
+            </div>
+
+            <div class="form-group mt-3">
                     <label for="avatar">Avatar</label>
                     <input type="file" class="form-control" id="avatar"  name="avatar">
-                    @if ($weapon->avatar)
-                        <img src={{ $weapon->avatar_url }} class="mt-3" style="max-width: 400px;"/>
+                    @if ($character->avatar)
+                        <img src={{ $character->avatar_url }} class="mt-3" style="max-width: 400px;"/>
                     @endif
+            </div>
             </div>
 
 
-            <button type="submit" class="btn btn-primary btn-block mt-4">Save</button>
+            <button type="submit" class="bg-green text-white font-bold py-2 px-4 rounded mt-4 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">Save</button>
         </form>
     </div>
 </div>
