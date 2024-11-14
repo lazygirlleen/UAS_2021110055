@@ -20,14 +20,12 @@
                     <a href="{{ route('weapons.show', $artefact->id) }}" class="text-lg font-semibold text-gray-800 hover:text-blue-600">
                         {{ $artefact->set }}
                     </a>
-                    <p class="text-base text-gray-700 mt-2">{{ $artefact->rarity }}</p>
-                    <span class="inline-block mt-2 px-3 py-1 text-sm font-medium bg-green-100 text-green-800 rounded-full">
+                    <p class="inline-block mt-2 px-3 py-1 text-sm font-small bg-green-100 text-green-800 rounded-full">
                         {{ $artefact->rarity }} Star
-                    </span>
-                    <p class="text-base text-gray-700 mt-2">{{ $artefact->set_bonus }}</p>
-                    <span class="inline-block mt-2 px-3 py-1 text-sm font-medium bg-green-100 text-green-800 rounded-full">
+                    </p>
+                    <p class="inline-block mt-2 px-3 py-1 text-sm font-small bg-green-100 text-green-800 rounded-full">
                         {{ $artefact->set_bonus }}
-                    </span>
+                    </p>
                 </div>
             </div>
         @empty

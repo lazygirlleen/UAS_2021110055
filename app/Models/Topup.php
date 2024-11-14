@@ -11,7 +11,6 @@ class Topup extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'account_id',
         'topup_type',
         'package',
         'payment_method',

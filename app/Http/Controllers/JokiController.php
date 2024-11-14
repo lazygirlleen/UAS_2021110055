@@ -39,12 +39,12 @@ class JokiController extends Controller
         // Simpan data ke database
         Joki::create([
             'account_id' => $request->id,
-            'joki_type' => $request->topup_type,
+            'joki_type' => $request->joki_type,
             'payment_method' => $request->payment_method,
         ]);
 
         // Redirect dengan pesan sukses
-        return redirect()->route('topups.index')->with('success', 'Top Up successfully added!');
+        return redirect()->route('jokis.index')->with('success', 'Joki successfully added!');
     }
 
     /**

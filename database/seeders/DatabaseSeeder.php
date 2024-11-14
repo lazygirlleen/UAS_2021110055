@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
         $this->call([CharacterTableSeeder::class]);
         $this->call([WeaponTableSeeder::class]);
+        $this->call([ArtefactTableSeeder::class]);
         // User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',

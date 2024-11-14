@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="p-5 text-center font-bold py-4">
-    <h1 class="font-bold text-green text-3xl">Welcome to Teyvat Nexus!</h1>
+    <h1 class="font-bold font-mono text-green text-3xl">Welcome to Teyvat Nexus!</h1>
 </div>
 
 <main class="grid w-full place-content-center bg-gray-100">
@@ -44,8 +44,9 @@
       images: [
         "{{ asset('storage/2.png') }}",
         "{{ asset('storage/3.png') }}",
-        "{{ asset('storage/1.png') }}",
-        "{{ asset('storage/4.png') }}"
+        "{{ asset('storage/4.png') }}",
+        "{{ asset('storage/5.png') }}",
+        "{{ asset('storage/1.png') }}"
       ],
       previous() {
         if (this.currentIndex > 1) {

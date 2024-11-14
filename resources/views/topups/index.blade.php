@@ -10,13 +10,6 @@
     </button>
 </div>
 
-
-@if (session()->has('success'))
-    <div class="bg-green-100 text-green-800 p-4 rounded-lg mt-4 mx-auto max-w-2xl">
-        {{ session()->get('success') }}
-    </div>
-@endif
-
 <div class="container mx-auto mt-5 px-4">
     <table class="min-w-full border border-gray-300 bg-white rounded-lg">
         <thead>

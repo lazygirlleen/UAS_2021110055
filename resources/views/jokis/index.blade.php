@@ -4,7 +4,7 @@
 <div class="mt-4 mb-3 p-5 text-center font-bold py-4">
     <h1 class="text-green text-3xl">Joki Transactions</h1>
     <button class="mt-3 py-2 px-4 bg-green text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">
-    <a href="{{ route('topups.create') }}" class="btn btn-primary btn-sm">
+    <a href="{{ route('jokis.create') }}" class="btn btn-primary btn-sm">
         Create New Transaction
     </a>
     </button>
@@ -28,7 +28,7 @@
             </tr>
         </thead>
         <tbody>
-            @forelse ($topups as $topup)
+            @forelse ($jokis as $joki)
                 <tr class="text-center">
                     <td class="py-2 px-4 border-b">{{ $joki->id }}</td>
                     <td class="py-2 px-4 border-b">{{ $joki->joki_type }}</td>
@@ -44,7 +44,7 @@
     </table>
 
     <div class="flex justify-center mt-4">
-        {{ $topups->links('pagination::tailwind') }}
+        {{ $jokis->links('pagination::tailwind') }}
     </div>
 </div>
 @endsection

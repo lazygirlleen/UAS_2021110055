@@ -31,7 +31,6 @@ class TopupController extends Controller
     {
         // Validasi data
         $request->validate([
-            'id' => 'required|string|max:255',
             'topup_type' => 'required|string',
             'package' => 'required|string',
             'payment_method' => 'required|string',
@@ -39,7 +38,6 @@ class TopupController extends Controller
 
         // Simpan data ke database
         Topup::create([
-            'account_id' => $request->id,
             'topup_type' => $request->topup_type,
             'package' => $request->package,
             'payment_method' => $request->payment_method,

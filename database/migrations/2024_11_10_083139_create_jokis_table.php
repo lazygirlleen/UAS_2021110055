@@ -13,11 +13,10 @@ return new class extends Migration
     {
         Schema::create('jokis', function (Blueprint $table) {
             $table->id();
-            $table->string('account_id');
             $table->string('joki_type');
-            $table->integer('payment_method');
-            $table->timestamp('transaction_date');
-            $table->string('status');
+            $table->string('payment_method');
+            $table->timestamp('transaction_date')->useCurrent();;
+            $table->string('status')->default('pending');
         });
     }
 

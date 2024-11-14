@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.10.3/dist/cdn.min.js" defer></script>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -19,42 +21,74 @@
                         {{ config('Teyvat Nexus') }} Teyvat Nexus
                     </a>
                     @auth
-                        <a href="{{ route('home') }}" class="text-gray-700 hover:text-green-house-100  overflow-hidden transform transition-transform hover:scale-105">Home</a>
-                        <a href="{{ route('accounts.index') }}" class="text-gray-700 hover:text-green-house-100 overflow-hidden transform transition-transform hover:scale-105">Account</a>
-                        <a href="{{ route('characters.index') }}" class="text-gray-700 hover:text-green-house-100 overflow-hidden transform transition-transform hover:scale-105">Character</a>
-                        <a href="{{ route('weapons.index') }}" class="text-gray-700 hover:text-green-house-100 overflow-hidden transform transition-transform hover:scale-105">Weapon</a>
-                        <a href="{{ route('artefacts.index') }}" class="text-gray-700 hover:text-green-house-100 overflow-hidden transform transition-transform hover:scale-105">Artefact</a>
-                        <a href="{{ route('topups.create') }}" class="text-gray-700 hover:text-green-house-100 overflow-hidden transform transition-transform hover:scale-105">Topup</a>
-                        <a href="{{ route('jokis.create') }}" class="text-gray-700 hover:text-green-house-100 overflow-hidden transform transition-transform hover:scale-105">Joki</a>
+                <a href="{{ route('home') }}" class="text-gray-700 hover:text-green-house-100 overflow-hidden transform transition-transform hover:scale-105">Home</a>
+                <a href="{{ route('accounts.index') }}" class="text-gray-700 hover:text-green-house-100 overflow-hidden transform transition-transform hover:scale-105">Account</a>
+                <a href="{{ route('characters.index') }}" class="text-gray-700 hover:text-green-house-100 overflow-hidden transform transition-transform hover:scale-105">Character</a>
+                <a href="{{ route('weapons.index') }}" class="text-gray-700 hover:text-green-house-100 overflow-hidden transform transition-transform hover:scale-105">Weapon</a>
+                <a href="{{ route('artefacts.index') }}" class="text-gray-700 hover:text-green-house-100 overflow-hidden transform transition-transform hover:scale-105">Artefact</a>
+
+                <div class="relative nav-item" x-data="{ openTopup: false }">
+                    <a href="#" @click="openTopup = !openTopup" class="text-gray-700 hover:text-green-house-100 overflow-hidden transform transition-transform hover:scale-105">Top Up</a>
+                    <div x-show="openTopup" class="absolute right-0 mt-2 w-48 bg-white text-green rounded-md shadow-lg z-20"
+                         x-transition:enter="transition ease-out duration-100 transform"
+                         x-transition:enter-start="opacity-0 scale-95"
+                         x-transition:enter-end="opacity-100 scale-100"
+                         x-transition:leave="transition ease-in duration-75 transform"
+                         x-transition:leave-start="opacity-100 scale-100"
+                         x-transition:leave-end="opacity-0 scale-95">
+                        <a href="{{ route('topups.create') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Request</a>
+                        <a href="{{ route('topups.index') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Transaction</a>
+                    </div>
+                </div>
+
+                <div class="relative nav-item" x-data="{ openJoki: false }">
+                    <a href="#" @click="openJoki = !openJoki" class="text-gray-700 hover:text-green-house-100 overflow-hidden transform transition-transform hover:scale-105">Joki</a>
+                    <div x-show="openJoki" class="absolute right-0 mt-2 w-48 bg-white text-green rounded-md shadow-lg z-20"
+                         x-transition:enter="transition ease-out duration-100 transform"
+                         x-transition:enter-start="opacity-0 scale-95"
+                         x-transition:enter-end="opacity-100 scale-100"
+                         x-transition:leave="transition ease-in duration-75 transform"
+                         x-transition:leave-start="opacity-100 scale-100"
+                         x-transition:leave-end="opacity-0 scale-95">
+                        <a href="{{ route('jokis.create') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Request</a>
+                        <a href="{{ route('jokis.index') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Transaction</a>
+                    </div>
+                </div>
+            @endauth
+                </div>
+
+                <div class="relative nav-item" x-data="{ open: false }">
+                    <!-- Dropdown Toggle -->
+                    @auth
+                        <a @click="open = !open" @click.away="open = false"
+                            class="nav-link cursor-pointer dropdown-toggle text-gray-800 hover:text-green-house-00 font-semibold"
+                            role="button" aria-haspopup="true" aria-expanded="false">
+                            {{ Auth::user()->name }}
+                        </a>
+
+                        <!-- Dropdown Menu -->
+                        <div x-show="open" class="absolute right-0 mt-2 w-48 bg-white text-green rounded-md shadow-lg z-20"
+                            x-transition:enter="transition ease-out duration-100 transform"
+                            x-transition:enter-start="opacity-0 scale-95"
+                            x-transition:enter-end="opacity-100 scale-100"
+                            x-transition:leave="transition ease-in duration-75 transform"
+                            x-transition:leave-start="opacity-100 scale-100"
+                            x-transition:leave-end="opacity-0 scale-95">
+
+                            <a href="{{ route('logout') }}"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                                @csrf
+                            </form>
+                        </div>
                     @endauth
                 </div>
 
-                <div class="flex items-center space-x-4">
-                    @guest
-                        @if (Route::has('login'))
-                            <a href="{{ route('login') }}" class="text-gray-700 hover:text-blue-600">Login</a>
-                        @endif
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="text-gray-700 hover:text-blue-600">Register</a>
-                        @endif
-                    @else
-                    <div class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
-                        </div>
-                    @endguest
                 </div>
             </div>
         </nav>
