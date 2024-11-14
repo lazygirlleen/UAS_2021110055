@@ -32,6 +32,9 @@ class Character extends Model
     }
 
 
-
+    public function account()
+    {
+        return $this->belongsTo(Account::class);
+    }
 
 }

@@ -14,4 +14,9 @@ class Account extends Model
         'email',
         'location'
     ];
+
+    public function characters()
+    {
+        return $this->hasMany(Character::class);
+    }
 }
