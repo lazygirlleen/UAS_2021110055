@@ -1,9 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="p-5 text-center font-bold py-4">
-    <h1 class="font-bold font-mono text-green text-3xl">Welcome to Teyvat Nexus!</h1>
-</div>
 
 <main class="grid w-full place-content-center bg-gray-100">
     <div x-data="imageSlider" class="relative mx-auto max-w-2xl overflow-hidden rounded-md bg-gray-100 p-4">

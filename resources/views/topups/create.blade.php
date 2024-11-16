@@ -77,9 +77,5 @@
   </form>
 </div>
 
-@if (session('payment_success'))
-  <div class="bg-green-100 text-green-800 p-4 rounded-lg mt-6">
-    <p class="font-semibold">Payment Successful!</p>
-  </div>
-@endif
+
 @endsection

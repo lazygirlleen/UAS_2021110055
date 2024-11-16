@@ -12,9 +12,30 @@
 
 
 @if (session()->has('success'))
-    <div class="bg-green-100 text-green-800 p-4 rounded-lg mt-4 mx-auto max-w-2xl">
-        {{ session()->get('success') }}
+<div id="success-dialog" class="fixed z-10 inset-0 overflow-y-auto">
+    <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 transition-opacity" onclick="closeDialog()">
+            <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+        </div>
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>
+        <div
+            class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+            <div class="sm:flex sm:items-start">
+                <div
+                    class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
+                    <svg class="h-6 w-6 text-green-600" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">
+                        Your Transaction Has Been Success
+                    </h3>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 @endif
 
 <div class="container mx-auto mt-5 px-4">
@@ -47,4 +68,16 @@
         {{ $jokis->links('pagination::tailwind') }}
     </div>
 </div>
+
+<script>
+    function closeDialog() {
+        const dialog = document.getElementById('success-dialog');
+        if (dialog) {
+            dialog.style.display = 'none';
+        }
+    }
+    setTimeout(() => {
+        closeDialog();
+    }, 5000);
+</script>
 @endsection

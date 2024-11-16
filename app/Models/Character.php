@@ -32,9 +32,8 @@ class Character extends Model
     }
 
 
-    public function account()
+    public function accounts()
     {
-        return $this->belongsTo(Account::class);
+        return $this->belongsToMany(Account::class, 'account_character');
     }
-
 }
