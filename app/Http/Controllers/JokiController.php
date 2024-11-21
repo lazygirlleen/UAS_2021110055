@@ -34,6 +34,7 @@ class JokiController extends Controller
             'id' => 'required|string|max:255',
             'joki_type' => 'required|string',
             'payment_method' => 'required|string',
+            'joki_id' => 'nullable|exists:jokis,id',
         ]);
 
         // Simpan data ke database
@@ -41,6 +42,7 @@ class JokiController extends Controller
             'account_id' => $request->id,
             'joki_type' => $request->joki_type,
             'payment_method' => $request->payment_method,
+            'joki_id' => $validated['joki_id'] ?? null,
         ]);
 
         // Redirect dengan pesan sukses

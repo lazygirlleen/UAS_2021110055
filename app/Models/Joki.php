@@ -15,4 +15,10 @@ class Joki extends Model
         'payment_method',
         'status'
     ];
+
+    //1 Account Bisa melakukan banyak transaksi Joki
+    public function acccount()
+    {
+        return $this->belongsTo(Account::class);
+    }
 }

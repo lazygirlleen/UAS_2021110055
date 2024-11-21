@@ -70,7 +70,14 @@ class AccountController extends Controller
      */
     public function update(Request $request, Account $account)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string',
+            'email' => 'email|string',
+            'location' => 'required|string',
+            'character_name' => 'nullable|exists:characters,name'
+        ]);
+
+        return redirect()->route('categories.index')->with('success', 'Category updated successfully.');
     }
 
     /**

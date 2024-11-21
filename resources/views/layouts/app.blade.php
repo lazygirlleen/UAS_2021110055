@@ -12,12 +12,12 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-green-house-50 font-sans antialiased">
+<body class="bg-green-house-50 font-oswald antialiased">
     <div id="app">
         <nav class="bg-green text-white px-4 py-3 mb-10 shadow-md">
             <div class="container mx-auto flex items-center justify-between">
                 <div class="flex items-center space-x-4">
-                    <a href="{{ url('/') }}" class="text-xl font-semibold text-gray-800 hover:text-blue-600">
+                    <a href="{{ url('/') }}" class="text-xl font-semibold text-gray-800 hover:text-blue-600 font-oswald">
                         {{ config('Teyvat Nexus') }} Teyvat Nexus
                     </a>
                     @auth

@@ -19,4 +19,9 @@ class Account extends Model
     {
         return $this->belongsToMany(Account::class, 'account_character');
     }
+
+    public function jokis()
+    {
+        return $this->hasMany(Joki::class);
+    }
 }

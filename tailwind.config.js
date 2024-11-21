@@ -31,6 +31,8 @@ module.exports = {
         sans: ['Graphik', 'sans-serif'],
         serif: ['Merriweather', 'serif'],
         mono: ['ui-monospace', 'SFMono-Regular'],
+        poppins: ["Poppins", "sans-serif"],
+        oswald: ["Oswald", "sans-serif"],
       },
       extend: {
         spacing: {
