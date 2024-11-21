@@ -31,6 +31,10 @@ class Character extends Model
         return $this->belongsToMany(Weapon::class, 'character_weapon');
     }
 
+    public function artefacts()
+    {
+        return $this->belongsToMany(Artefact::class, 'character_artefact');
+    }
 
     public function accounts()
     {

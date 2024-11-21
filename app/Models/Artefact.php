@@ -11,4 +11,9 @@ class Artefact extends Model
         'rarity',
         'set_bonus'
     ];
+
+    public function characters()
+    {
+        return $this->belongsToMany(Character::class);
+    }
 }
