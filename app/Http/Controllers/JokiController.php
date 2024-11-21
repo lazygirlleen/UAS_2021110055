@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Account;
 use App\Models\Joki;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,8 @@ class JokiController extends Controller
      */
     public function create()
     {
-        return view('jokis.create');
+        $accounts = Account::all();
+        return view('jokis.create', compact('accounts'));
     }
 
     /**
@@ -30,19 +32,19 @@ class JokiController extends Controller
     public function store(Request $request)
     {
            // Validasi data
-           $request->validate([
+        $validated = $request->validate([
             'id' => 'required|string|max:255',
             'joki_type' => 'required|string',
             'payment_method' => 'required|string',
-            'joki_id' => 'nullable|exists:jokis,id',
+            'account_id' => 'nullable|exists:accounts,id',
         ]);
 
         // Simpan data ke database
         Joki::create([
-            'account_id' => $request->id,
+            'id' => $request->id,
             'joki_type' => $request->joki_type,
             'payment_method' => $request->payment_method,
-            'joki_id' => $validated['joki_id'] ?? null,
+            'account_id' => $validated['account_id'] ?? null,
         ]);
 
         // Redirect dengan pesan sukses

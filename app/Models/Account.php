@@ -24,4 +24,9 @@ class Account extends Model
     {
         return $this->hasMany(Joki::class);
     }
+
+    public function topups()
+    {
+        return $this->hasMany(Topup::class);
+    }
 }

@@ -29,6 +29,14 @@
                 <label for="id" class="block font-medium text-gray-700">Account ID</label>
                 <input name="id" id="id" class="mt-1 p-2 border border-gray-300 rounded-lg w-full" required value="{{ old('id') }}">
             </div>
+            <div class="mb-3 col-md-12 col-sm-12">
+            <select class="form-select form-select-lg mb-3" name="account_id">
+                <option>No Category</option>
+                @foreach ($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </div>
         </div>
 
         <div class="bg-white shadow-md rounded-lg p-6">
@@ -42,11 +50,8 @@
                     <option value="Weapon" {{ old('joki_type') == 'Weapon' ? 'selected' : '' }}>Weapon Material</option>
                 </select>
             </div>
-
-
             <div>
-</div>
-
+        </div>
         </div>
 
         <div class="bg-white shadow-md rounded-lg p-6">

@@ -17,7 +17,7 @@ class Joki extends Model
     ];
 
     //1 Account Bisa melakukan banyak transaksi Joki
-    public function acccount()
+    public function account()
     {
         return $this->belongsTo(Account::class);
     }
