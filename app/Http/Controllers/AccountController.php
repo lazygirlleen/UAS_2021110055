@@ -18,6 +18,7 @@ class AccountController extends Controller
     public function index()
     {
         $characters = Character::all();
+        $accounts = Account::with('characters')->get();
         $accounts = Account::all();
         return view('accounts.index', compact('characters', 'accounts'));
     }
