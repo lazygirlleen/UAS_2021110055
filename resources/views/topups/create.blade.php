@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Input New Top Up')
+@section('title', 'Input New Top Up Transaction')
+<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
 
 @section('content')
 <div class="p-5 text-center font-bold text-2xl">
@@ -47,15 +48,21 @@
                 <label for="package" class="block font-medium text-gray-700">Package</label>
                 <select class="mt-1 p-2 border border-gray-300 rounded-lg w-full" id="package" name="package" required>
                     <option value="" disabled selected>Select Package</option>
-                    <option value="60_Genesis_Crystals" {{ old('package') == '60_Genesis_Crystals' ? 'selected' : '' }}>60 Genesis Crystals</option>
-                    <option value="330_Genesis_Crystals" {{ old('package') == '330_Genesis_Crystals' ? 'selected' : '' }}>300+30 Genesis Crystals</option>
-                    <option value="1090_Genesis_Crystals" {{ old('package') == '1090_Genesis_Crystals' ? 'selected' : '' }}>980+110 Genesis Crystals</option>
-                    <option value="2240_Genesis_Crystals" {{ old('package') == '2240_Genesis_Crystals' ? 'selected' : '' }}>1980+260 Genesis Crystals</option>
-                    <option value="3880_Genesis_Crystals" {{ old('package') == '3880_Genesis_Crystals' ? 'selected' : '' }}>3280+600 Genesis Crystals</option>
-                    <option value="8080_Genesis_Crystals" {{ old('package') == '8080_Genesis_Crystals' ? 'selected' : '' }}>6480+1600 Genesis Crystals</option>
-                    <option value="Welkin_Moon" {{ old('package') == 'Welkin_Moon' ? 'selected' : '' }}>Blessing of the Welkin Moon</option>
+                    <option value="60_Genesis_Crystals" data-price="60" {{ old('package') == '60_Genesis_Crystals' ? 'selected' : '' }}>60 Genesis Crystals</option>
+                    <option value="330_Genesis_Crystals" data-price="330" {{ old('package') == '330_Genesis_Crystals' ? 'selected' : '' }}>300+30 Genesis Crystals</option>
+                    <option value="1090_Genesis_Crystals" data-price="1090" {{ old('package') == '1090_Genesis_Crystals' ? 'selected' : '' }}>980+110 Genesis Crystals</option>
+                    <option value="2240_Genesis_Crystals" data-price="2240" {{ old('package') == '2240_Genesis_Crystals' ? 'selected' : '' }}>1980+260 Genesis Crystals</option>
+                    <option value="3880_Genesis_Crystals" data-price="3880" {{ old('package') == '3880_Genesis_Crystals' ? 'selected' : '' }}>3280+600 Genesis Crystals</option>
+                    <option value="8080_Genesis_Crystals" data-price="8080" {{ old('package') == '8080_Genesis_Crystals' ? 'selected' : '' }}>6480+1600 Genesis Crystals</option>
+                    <option value="Welkin_Moon" data-price="300" {{ old('package') == 'Welkin_Moon' ? 'selected' : '' }}>Blessing of the Welkin Moon</option>
                 </select>
             </div>
+        </div>
+
+        <!-- Display Price -->
+        <div class="bg-white shadow-md rounded-lg p-6">
+            <h5 class="font-semibold text-lg mb-4">Total Price</h5>
+            <div id="price-display" class="text-xl font-bold text-teal">Rp 0</div>
         </div>
 
         <div class="bg-white shadow-md rounded-lg p-6">
@@ -70,14 +77,20 @@
             </div>
         </div>
 
-        <button id="pay-button"  type="submit" class="mt-3 py-2 px-4 bg-teal text-white font-semibold rounded-md hover:bg-white focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">Pay Now</button>
+        <button id="pay-button" type="submit" class="mt-3 py-2 px-4 bg-teal text-white font-semibold rounded-md hover:bg-white focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">Pay Now</button>
         <script>
             var payButton = document.getElementById('pay-button');
             payButton.addEventListener('click', function () {
                 snap.pay('{{ $snapToken }}');
             });
-        </script>
 
+            // Update the displayed price based on the selected package
+            document.getElementById('package').addEventListener('change', function() {
+                var selectedOption = this.options[this.selectedIndex];
+                var price = selectedOption.getAttribute('data-price');
+                document.getElementById('price-display').innerText = 'Rp ' + price;
+            });
+        </script>
     </form>
 </div>
 @endsection
