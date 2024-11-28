@@ -25,7 +25,12 @@ module.exports = {
         'blue': '#3b82f6',
         'green-house-50': '#F0FFE4',
         'green-house-100': '#DEFFC5',
-        'cream': '#ede9e0'
+        'cream': '#ede9e0',
+        'teal': '#0A97B0',
+        'blue': '#0A5EB0',
+        'black': '#2A3335',
+        'pink': '#FFCFEF',
+        'violet': '#D4EBF8'
       },
       fontFamily: {
         sans: ['Graphik', 'sans-serif'],

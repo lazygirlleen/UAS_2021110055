@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Artefact;
 use App\Models\Character;
 use App\Models\Weapon;
 use Illuminate\Http\Request;
@@ -36,12 +37,14 @@ class CharacterController extends Controller
      */
     public function edit(Character $character)
     {
+        $artefacts = Artefact::all();
         $weapons = Weapon::all();
         return view('characters.edit', compact('character', 'weapons'));
     }
 
     public function create()
     {
+        $artefacts = Artefact::all();
         $weapons = Weapon::all();
         return view('characters.create', compact('weapons'));
     }
@@ -55,7 +58,8 @@ class CharacterController extends Controller
             'element' => 'required|string|max:13',
             'weapon' => 'required|string|max:13',
             'faction' => 'required|string|max:255',
-            'weapon_name' => 'nullable|exists:weapons,name'
+            'weapon_name' => 'nullable|exists:weapons,name',
+            'artefact_name' => 'nullable|exists:artefacts,name'
         ]);
 
 
@@ -92,7 +96,8 @@ class CharacterController extends Controller
             'element' => 'required|string|max:13',
             'weapon' => 'required|string|max:13',
             'faction' => 'required|string|max:255',
-            'weapon_name' => 'nullable|exists:weapons,name'
+            'weapon_name' => 'nullable|exists:weapons,name',
+            'artefact_name' => 'nullable|exists:artefacts,name'
         ]);
 
         // Handle avatar upload

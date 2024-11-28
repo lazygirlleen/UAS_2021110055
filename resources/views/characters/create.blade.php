@@ -4,8 +4,8 @@
 
 @section('content')
 
-<div class="p-5 text-center font-bold py-4 text-green">
-    <h1 class="text-green text-3xl">Add New Character</h1>
+<div class="p-5 text-center font-bold py-4 text-teal">
+    <h1 class="text-teal text-3xl">Add New Character</h1>
 
 </div>
 

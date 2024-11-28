@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="p-5 text-center font-bold text-2xl">
-    <h1 class="text-green text-3xl">All Artefacts</h1>
+    <h1 class="text-teal text-3xl">All Artefacts</h1>
 </div>
 
 @if (session()->has('success'))
@@ -35,6 +35,7 @@
         @endforelse
     </div>
 
+    <
     <div class="flex justify-center mt-8">
         <nav>
             <ul class="inline-flex items-center space-x-1">
@@ -53,11 +54,11 @@
                 @foreach ($artefacts->links()->elements[0] as $page => $url)
                     @if ($page == $artefacts->currentPage())
                         <li class="page-item active">
-                            <span class="px-3 py-2 bg-blue-500 text-white rounded">{{ $page }}</span>
+                            <span class="px-3 py-2 bg-blue-500 text-teal text-bold rounded">{{ $page }}</span>
                         </li>
                     @else
                         <li class="page-item">
-                            <a href="{{ $url }}" class="px-3 py-2 text-blue-500 bg-gray-100 hover:bg-gray-200 rounded">{{ $page }}</a>
+                            <a href="{{ $url }}" class="px-3 py-2 text-pink text-bold bg-gray-100 hover:bg-gray-200 rounded">{{ $page }}</a>
                         </li>
                     @endif
                 @endforeach

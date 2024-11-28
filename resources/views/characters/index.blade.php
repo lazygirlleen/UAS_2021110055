@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="p-5 text-center font-bold py-4 text-green">
-    <h1 class="text-green text-3xl">All Characters</h1>
-    <button class="mt-3 py-2 px-4 bg-green text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">
+<div class="p-5 text-center font-bold py-4 text-teal">
+    <h1 class="text-teal text-3xl">All Characters</h1>
+    <button class="mt-3 py-2 px-4 bg-teal text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">
     <a href="{{ route('characters.create') }}" class="btn btn-primary btn-sm">
         Add New Character
     </a>
@@ -34,7 +34,9 @@
                         {{ $character->rarity }} Star
                     </span>
                     <div class="mt-4">
-                        <a href="{{ route('characters.show', $character->id) }}" class="block text-center text-white bg-blue-500 hover:bg-blue-600 py-2 px-4 rounded-lg">Detail</a>
+                    <button class="mt-3 py-2 px-4 bg-teal text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">
+                        <a href="{{ route('characters.show', $character->id) }}" >Detail</a>
+                    </button>
                     </div>
                 </div>
             </div>
@@ -63,11 +65,11 @@
                 @foreach ($characters->links()->elements[0] as $page => $url)
                     @if ($page == $characters->currentPage())
                         <li class="page-item active">
-                            <span class="px-3 py-2 bg-blue-500 text-white rounded">{{ $page }}</span>
+                            <span class="px-3 py-2 bg-blue-500 text-teal text-bold rounded">{{ $page }}</span>
                         </li>
                     @else
                         <li class="page-item">
-                            <a href="{{ $url }}" class="px-3 py-2 text-blue-500 bg-gray-100 hover:bg-gray-200 rounded">{{ $page }}</a>
+                            <a href="{{ $url }}" class="px-3 py-2 text-pink text-bold bg-gray-100 hover:bg-gray-200 rounded">{{ $page }}</a>
                         </li>
                     @endif
                 @endforeach

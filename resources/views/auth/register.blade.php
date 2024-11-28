@@ -3,7 +3,7 @@
 @section('content')
 <div class="flex items-center justify-center min-h-screen bg-gray-100">
     <div class="w-full max-w-md p-8 bg-white rounded-lg shadow-md">
-        <h2 class="text-2xl font-bold text-center text-gray-700">{{ __('Register') }}</h2>
+        <h2 class="text-2xl font-bold text-center  text-teal">{{ __('Register') }}</h2>
 
         <form method="POST" action="{{ route('register') }}">
             @csrf
@@ -38,7 +38,7 @@
             </div>
 
             <div class="mt-6">
-                <button type="submit" class="w-full py-2 px-4 bg-green text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">
+                <button type="submit" class="w-full py-2 px-4 bg-teal text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">
                     {{ __('Register') }}
                 </button>
             </div>

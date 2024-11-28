@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Account;
 use App\Models\Topup;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class TopupController extends Controller
     public function index()
     {
         $topups = Topup::paginate(10);
-         return view('topups.index', compact('topups'));
+        return view('topups.index', compact('topups'));
     }
 
     /**
@@ -21,7 +22,9 @@ class TopupController extends Controller
      */
     public function create()
     {
-        return view('topups.create');
+        // Retrieve all accounts to pass to the view
+        $accounts = Account::all();
+        return view('topups.create', compact('accounts'));
     }
 
     /**
@@ -29,21 +32,23 @@ class TopupController extends Controller
      */
     public function store(Request $request)
     {
-        // Validasi data
-        $request->validate([
+        // Validate the request data
+        $validated = $request->validate([
             'topup_type' => 'required|string',
             'package' => 'required|string',
             'payment_method' => 'required|string',
+            'account_id' => 'nullable|exists:accounts,id',
         ]);
 
-        // Simpan data ke database
+        // Store the data in the database
         Topup::create([
             'topup_type' => $request->topup_type,
             'package' => $request->package,
             'payment_method' => $request->payment_method,
+            'account_id' => $validated['account_id'] ?? null,
         ]);
 
-        // Redirect dengan pesan sukses
+        // Redirect with success message
         return redirect()->route('topups.index')->with('success', 'Top Up successfully added!');
     }
 
@@ -52,7 +57,7 @@ class TopupController extends Controller
      */
     public function show(Topup $topup)
     {
-        //
+        // Implementation can be added here if needed
     }
 
     /**
@@ -60,7 +65,7 @@ class TopupController extends Controller
      */
     public function edit(Topup $topup)
     {
-        //
+        // Implementation can be added here if needed
     }
 
     /**
@@ -68,7 +73,7 @@ class TopupController extends Controller
      */
     public function update(Request $request, Topup $topup)
     {
-        //
+        // Implementation can be added here if needed
     }
 
     /**
@@ -76,6 +81,6 @@ class TopupController extends Controller
      */
     public function destroy(Topup $topup)
     {
-        //
+        // Implementation can be added here if needed
     }
 }

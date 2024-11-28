@@ -4,8 +4,8 @@
 
 @section('content')
 
-<div class="p-3 text-center font-bold py-4 text-green">
-<div class="text-green text-3xl">
+<div class="p-3 text-center font-bold py-4 text-teal">
+<div class="text-teal text-3xl">
     <h1 class="text-3xl font-bold text-gray-800 mb-3">Character Details</h1>
 </div>
 </div>

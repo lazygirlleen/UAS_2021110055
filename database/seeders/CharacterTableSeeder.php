@@ -87,7 +87,7 @@ class CharacterTableSeeder extends Seeder
                 'element' => 'Electro',
                 'type' => 'Catalyst',
                 'faction' => 'Knight of Favonius',
-                'avatar' => 'Lisa.png'
+                'avatar' => 'Lisa.jpg'
             ],
             [
                 'name' => 'Klee',
@@ -96,7 +96,7 @@ class CharacterTableSeeder extends Seeder
                 'element' => 'Pyro',
                 'type' => 'Catalyst',
                 'faction' => 'Knight of Favonius',
-                'avatar' => 'Klee.png'
+                'avatar' => 'Klee.jpg'
             ],
             [
                 'name' => 'Razor',

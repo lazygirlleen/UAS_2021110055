@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="p-5 text-center font-bold text-2xl">
-    <h1 class="text-green text-3xl">Joki</h1>
+    <h1 class="text-teal text-3xl">Joki</h1>
 </div>
 
 
@@ -25,18 +25,15 @@
 
         <div class="bg-white shadow-md rounded-lg p-5">
             <h5 class="font-semibold text-lg mb-4">Insert Your ID</h5>
-            <div>
-                <label for="id" class="block font-medium text-gray-700">Account ID</label>
-                <input name="id" id="id" class="mt-1 p-2 border border-gray-300 rounded-lg w-full" required value="{{ old('id') }}">
-            </div>
-            <div class="mb-3 col-md-12 col-sm-12">
-            <select class="form-select form-select-lg mb-3" name="account_id">
-                <option>No Category</option>
-                @foreach ($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                    @endforeach
-                </select>
-            </div>
+
+            <select class="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="characters[]" multiple>
+            @foreach ($accounts as $account)
+                            <option value="{{ $account->name }}">
+                            {{ $account->name }}</option>
+            @endforeach
+            </select>
+
+
         </div>
 
         <div class="bg-white shadow-md rounded-lg p-6">
@@ -66,7 +63,7 @@
             </div>
         </div>
 
-        <button type="submit" class="mt-3 py-2 px-4 bg-green text-white font-semibold rounded-md hover:bg-white  focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">Pay Now</button>
+        <button type="submit" class="mt-3 py-2 px-4 bg-teal text-white font-semibold rounded-md hover:bg-white  focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">Pay Now</button>
     </form>
 </div>
 @endsection

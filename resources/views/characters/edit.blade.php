@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="mt-4 p-5 bg-black text-white rounded">
-    <h1 class="text-green text-3xl">Edit Character</h1>
+    <h1 class="text-teal text-3xl">Edit Character</h1>
 </div>
 
 

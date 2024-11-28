@@ -12,24 +12,24 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-green-house-50 font-oswald antialiased">
+<body class="bg-violet font-oswald antialiased">
     <div id="app">
-        <nav class="bg-green text-white px-4 py-3 mb-10 shadow-md">
+        <nav class="bg-teal text-white px-4 py-3 mb-10 shadow-md">
             <div class="container mx-auto flex items-center justify-between">
                 <div class="flex items-center space-x-4">
-                    <a href="{{ url('/') }}" class="text-xl font-semibold text-gray-800 hover:text-blue-600 font-oswald">
+                    <a href="{{ url('/') }}" class="text-xl font-semibold text-pink hover:text-blue font-oswald">
                         {{ config('Teyvat Nexus') }} Teyvat Nexus
                     </a>
                     @auth
-                <a href="{{ route('home') }}" class="text-gray-700 hover:text-green-house-100 overflow-hidden transform transition-transform hover:scale-105">Home</a>
-                <a href="{{ route('accounts.index') }}" class="text-gray-700 hover:text-green-house-100 overflow-hidden transform transition-transform hover:scale-105">Account</a>
-                <a href="{{ route('characters.index') }}" class="text-gray-700 hover:text-green-house-100 overflow-hidden transform transition-transform hover:scale-105">Character</a>
-                <a href="{{ route('weapons.index') }}" class="text-gray-700 hover:text-green-house-100 overflow-hidden transform transition-transform hover:scale-105">Weapon</a>
-                <a href="{{ route('artefacts.index') }}" class="text-gray-700 hover:text-green-house-100 overflow-hidden transform transition-transform hover:scale-105">Artefact</a>
+                <a href="{{ route('home') }}" class="text-gray-700 hover:text-pink overflow-hidden transform transition-transform hover:scale-105">Home</a>
+                <a href="{{ route('accounts.index') }}" class="text-gray-700 hover:text-pink overflow-hidden transform transition-transform hover:scale-105">Account</a>
+                <a href="{{ route('characters.index') }}" class="text-gray-700 hover:text-pink overflow-hidden transform transition-transform hover:scale-105">Character</a>
+                <a href="{{ route('weapons.index') }}" class="text-gray-700 hover:text-pink overflow-hidden transform transition-transform hover:scale-105">Weapon</a>
+                <a href="{{ route('artefacts.index') }}" class="text-gray-700 hover:text-pink overflow-hidden transform transition-transform hover:scale-105">Artefact</a>
 
                 <div class="relative nav-item" x-data="{ openTopup: false }">
-                    <a href="#" @click="openTopup = !openTopup" class="text-gray-700 hover:text-green-house-100 overflow-hidden transform transition-transform hover:scale-105">Top Up</a>
-                    <div x-show="openTopup" class="absolute right-0 mt-2 w-48 bg-white text-green rounded-md shadow-lg z-20"
+                    <a href="#" @click="openTopup = !openTopup" class="text-gray-700 hover:text-pink overflow-hidden transform transition-transform hover:scale-105">Top Up</a>
+                    <div x-show="openTopup" class="absolute right-0 mt-2 w-48 bg-white text-teal rounded-md shadow-lg z-20"
                          x-transition:enter="transition ease-out duration-100 transform"
                          x-transition:enter-start="opacity-0 scale-95"
                          x-transition:enter-end="opacity-100 scale-100"
@@ -42,8 +42,8 @@
                 </div>
 
                 <div class="relative nav-item" x-data="{ openJoki: false }">
-                    <a href="#" @click="openJoki = !openJoki" class="text-gray-700 hover:text-green-house-100 overflow-hidden transform transition-transform hover:scale-105">Joki</a>
-                    <div x-show="openJoki" class="absolute right-0 mt-2 w-48 bg-white text-green rounded-md shadow-lg z-20"
+                    <a href="#" @click="openJoki = !openJoki" class="text-gray-700 hover:text-pink overflow-hidden transform transition-transform hover:scale-105">Joki</a>
+                    <div x-show="openJoki" class="absolute right-0 mt-2 w-48 bg-white text-teal rounded-md shadow-lg z-20"
                          x-transition:enter="transition ease-out duration-100 transform"
                          x-transition:enter-start="opacity-0 scale-95"
                          x-transition:enter-end="opacity-100 scale-100"

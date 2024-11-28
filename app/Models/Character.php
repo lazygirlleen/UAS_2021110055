@@ -38,6 +38,6 @@ class Character extends Model
 
     public function accounts()
     {
-        return $this->belongsToMany(Account::class, 'account_character');
+        return $this->belongsToMany(Account::class, 'account_character', 'character_id', 'account_id');
     }
 }

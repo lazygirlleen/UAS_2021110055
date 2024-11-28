@@ -15,37 +15,75 @@
     @else
         <style>
             /* Custom Tailwind CSS Styles */
-            *:not([hidden]) { box-sizing: border-box; }
-            body { font-family: Figtree, ui-sans-serif, system-ui, sans-serif; margin: 0; line-height: 1.5; }
-            a { color: inherit; text-decoration: none; }
-            .min-h-screen { min-height: 100vh; }
-            .bg-gray-100 { background-color: #f7fafc; }
-            .text-black { color: #000; }
-            .text-white { color: #fff; }
-            .rounded-md { border-radius: 0.375rem; }
-            .transition { transition: color 150ms, background-color 150ms, border-color 150ms; }
-            .hover\:text-black\/70:hover { color: rgba(0, 0, 0, 0.7); }
-            /* Additional styles omitted for brevity */
+            *:not([hidden]) {
+                box-sizing: border-box;
+            }
+            body {
+                font-family: Figtree, ui-sans-serif, system-ui, sans-serif;
+                margin: 0;
+                line-height: 1.5;
+            }
+            a {
+                color: inherit;
+                text-decoration: none;
+            }
+            .min-h-screen {
+                min-height: 100vh;
+            }
+            .bg-teal {
+                background-color: #38b2ac;
+            }
+            .text-blue {
+                color: #3182ce;
+            }
+            .text-pink {
+                color: #FFCFEF;
+            }
+            .text-green-600 {
+                color: #48bb78;
+            }
+            .text-white {
+                color: #fff;
+            }
+            .rounded-md {
+                border-radius: 0.375rem;
+            }
+            .transition {
+                transition: color 150ms, background-color 150ms, border-color 150ms;
+            }
+            .hover\:text-green-300:hover {
+                color: #68d391;
+            }
+            .container {
+                max-width: 1280px;
+                margin: 0 auto;
+            }
         </style>
     @endif
 </head>
+<body>
 
-<body class="font-sans antialiased dark:bg-green-house-50 dark:text-white/50">
-    <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
+<!-- Navigation Bar -->
+<nav class="bg-teal text-blue px-4 py-3 mb-10 shadow-md">
+    <div class="container mx-auto flex items-center justify-between">
+        <!-- Logo -->
+        <div class="flex items-center space-x-4">
+            <span class="ml-3 text-xl font-semibold text-blue">Teyvat Nexus</span>
+        </div>
 
+        <!-- Navbar links -->
         @if (Route::has('login'))
-            <nav class="-mx-3 flex flex-1 justify-end">
+            <nav class="flex items-center space-x-6">
                 @auth
-                    <a href="{{ url('/home') }}" class="mt-3 text-white hover:text-green overflow-hidden transform transition-transform hover:scale-105">
+                    <a href="{{ url('/home') }}" class="text-blue hover:text-pink">
                         Dashboard
                     </a>
                 @else
-                    <a href="{{ route('login') }}" class="px-3 py-2 text-green ">
+                    <a href="{{ route('login') }}" class="px-3 py-2 text-blue hover:text-pink">
                         Log in
                     </a>
-
                     @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class=" px-3 py-2 text-green">
+                        <a href="{{ route('register') }}" class="px-3 py-2 text-blue hover:text-pink">
                             Register
                         </a>
                     @endif
@@ -53,24 +91,27 @@
             </nav>
         @endif
     </div>
+</nav>
 
-    <div class="flex items-center justify-center min-h-screen bg-gray-100">
-        <div class="w-full max-w-md p-5 bg-white rounded-lg shadow-md">
-                        <class="py-20" style="background: linear-gradient(90deg, #667eea 0%, #764ba2 100%)">
-                        <div class="container mx-auto px-6">
-                            <h2 class="text-4xl font-bold mb-2 text-green">
-                                Welcome to Teyvat Nexus
-                            </h2>
-                            <h3 class="text-2xl mb-8 text-green">
-                            You can see various Genshin character, weapon recommendation, artefact recommendation, and in game transactions
-                            </h3>
+<!-- Main Content Section -->
+<section class="text-gray-700 body-font">
+    <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
+        <!-- Text Section -->
+        <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
+            <h2 class="text-4xl font-bold mb-2 text-pink">
+                Welcome to Teyvat Nexus
+            </h2>
+            <h3 class="text-2xl mb-8 text-teal">
+                Explore various Genshin characters, weapon recommendations, artifact suggestions, and in-game transactions.
+            </h3>
+        </div>
 
-                            <button class="w-full py-2 px-4 bg-green text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">
-                            Learn More
-                            </button>
-                        </div>
-                        </div>
+        <!-- Image Section -->
+        <div class="w-full md:w-1/2">
+            <img class="rounded-lg" src="{{ asset('storage/genshin.jpg') }}" alt="Genshin Image">
         </div>
     </div>
+</section>
+
 </body>
 </html>

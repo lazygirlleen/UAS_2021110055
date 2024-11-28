@@ -11,15 +11,15 @@ class Account extends Model
     public $timestamps = false;
     protected $fillable = [
         'name',
+        'uid',
         'email',
         'location'
     ];
 
     public function characters()
     {
-        return $this->belongsToMany(Account::class, 'account_character');
+        return $this->belongsToMany(Character::class, 'account_character', 'account_id', 'character_id');
     }
-
     public function jokis()
     {
         return $this->hasMany(Joki::class);

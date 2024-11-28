@@ -36,17 +36,22 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string',
-            'email' => 'email|string',
+        $request->validate([
+            'uid' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
             'location' => 'required|string',
-            'character_name' => 'nullable|exists:characters,name'
+            'characters' => 'nullable|array',
         ]);
 
-        Account::create($validated);
+        $account = Account::create($request->only(['uid', 'name', 'email', 'location']));
 
-        // Redirect dengan pesan sukses
-        return redirect()->route('accounts.index')->with('success', 'Account successfully added!');
+        // Attach characters if any are selected
+        if ($request->has('characters')) {
+            $account->characters()->attach($request->input('characters'));
+        }
+
+        return redirect()->route('accounts.index')->with('success', 'Account created successfully!');
     }
 
     /**
@@ -72,6 +77,7 @@ class AccountController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string',
+            'uid' => 'required|integer',
             'email' => 'email|string',
             'location' => 'required|string',
             'character_name' => 'nullable|exists:characters,name'

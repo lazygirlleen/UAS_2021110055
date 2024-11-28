@@ -13,8 +13,8 @@ class CreateAccountCharacterTable extends Migration
     {
         Schema::create('account_character', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('character_id')->constrained()->onDelete('cascade');
             $table->foreignId('account_id')->constrained()->onDelete('cascade');
+            $table->foreignId('character_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
