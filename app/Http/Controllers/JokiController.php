@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Account;
 use App\Models\Joki;
 use Illuminate\Http\Request;
+use Midtrans\Snap;
 
 class JokiController extends Controller
 {
@@ -22,33 +23,39 @@ class JokiController extends Controller
 
     // app/Http/Controllers/JokiController.php
 
-public function store(Request $request)
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'account_id' => 'required|exists:accounts,id',
+            'joki_type' => 'required|string',
+            'payment_method' => 'required|string',
+        ]);
+
+
+        $joki = Joki::create([
+            'account_id' => $validated['account_id'][0], // Ambil ID pertama dari array
+            'joki_type' => $validated['joki_type'],
+            'payment_method' => $validated['payment_method'],
+           
+        ]);
+
+        return redirect()->route('jokis.payment', $joki->id);
+    }
+
+
+    public function payment(Joki $joki)
 {
-    // Validasi data
-    $validated = $request->validate([
-        'account_id' => 'required|exists:accounts,id', // Ensure account_id exists in the accounts table
-        'joki_type' => 'required|string',
-        'payment_method' => 'required|string',
-    ]);
-
-    // Simpan data Joki
-    $joki = Joki::create([
-        'account_id' => $validated['account_id'],  // Set the account_id for the Joki
-        'joki_type' => $validated['joki_type'],
-        'payment_method' => $validated['payment_method'],
-    ]);
-
-    // Konfigurasi Midtrans
+    // Pastikan Midtrans dikonfigurasi
     \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
-    \Midtrans\Config::$isProduction = false; // Change to true for production
+    \Midtrans\Config::$isProduction = false;
     \Midtrans\Config::$isSanitized = true;
     \Midtrans\Config::$is3ds = true;
 
-    // Data untuk transaksi
+    // Buat ulang Snap Token berdasarkan Joki ID
     $params = [
         'transaction_details' => [
             'order_id' => $joki->id,
-            'gross_amount' => 100000, // Example transaction amount (adjust as needed)
+            'gross_amount' => $this->getPrice($joki->joki_type),
         ],
         'customer_details' => [
             'first_name' => 'John',
@@ -58,17 +65,15 @@ public function store(Request $request)
         ],
     ];
 
-    // Create Snap Token
     try {
         $snapToken = \Midtrans\Snap::getSnapToken($params);
 
-        // Redirect to payment page or show the token
         return view('jokis.payment', [
             'snapToken' => $snapToken,
             'joki' => $joki,
         ]);
     } catch (\Exception $e) {
-        return redirect()->route('jokis.index')->with('error', 'Failed to create transaction: ' . $e->getMessage());
+        return redirect()->route('jokis.create')->with('error', 'Failed to create Snap Token: ' . $e->getMessage());
     }
 }
 

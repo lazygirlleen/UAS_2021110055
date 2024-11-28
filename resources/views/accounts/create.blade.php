@@ -91,14 +91,12 @@
 
                 <div class="mb-4">
                     <label for="character_name" class="block text-gray-700">Character Name</label>
-                    <select
-                        name="characters[]"
-                        class="block w-full border border-gray-300 rounded-md p-2"
-                        multiple>
+                    <select name="characters[]" class="block w-full border border-gray-300 rounded-md p-2" multiple>
                         @foreach ($characters as $character)
-                            <option value="{{ $character->name }}">{{ $character->name }}</option>
+                            <option value="{{ $character->id }}">{{ $character->name }}</option>
                         @endforeach
                     </select>
+
                 </div>
             </div>
 

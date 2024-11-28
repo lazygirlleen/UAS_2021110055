@@ -26,9 +26,7 @@
             <select class="block w-full border border-gray-300 rounded-md p-2"
                     name="account_id[]" multiple required>
                 @foreach ($accounts as $account)
-                    <option value="{{ $account->id }}">
-                        {{ $account->name }}
-                    </option>
+                    <option value="{{ $account->id }}">{{ $account->name }}</option>
                 @endforeach
             </select>
         </div>
@@ -39,9 +37,9 @@
                 <label for="joki_type" class="block font-medium text-gray-700">Type</label>
                 <select class="mt-1 p-2 border border-gray-300 rounded-lg w-full" id="joki_type" name="joki_type" required>
                     <option value="" disabled selected>Select Type</option>
-                    <option value="Daily" data-price="100" {{ old('joki_type') == 'Daily' ? 'selected' : '' }}>Daily Quest</option>
-                    <option value="Character" data-price="200" {{ old('joki_type') == 'Character' ? 'selected' : '' }}>Character Material</option>
-                    <option value="Weapon" data-price="300" {{ old('joki_type') == 'Weapon' ? 'selected' : '' }}>Weapon Material</option>
+                    <option value="Daily" data-price="7000" {{ old('joki_type') == 'Daily' ? 'selected' : '' }}>Daily Quest</option>
+                    <option value="Character" data-price="65000" {{ old('joki_type') == 'Character' ? 'selected' : '' }}>Character Material</option>
+                    <option value="Weapon" data-price="50000" {{ old('joki_type') == 'Weapon' ? 'selected' : '' }}>Weapon Material</option>
                 </select>
             </div>
         </div>
@@ -58,18 +56,17 @@
             </div>
         </div>
 
-
-          <!-- Display Price -->
-          <div class="bg-white shadow-md rounded-lg p-6">
+        <!-- Display Price -->
+        <div class="bg-white shadow-md rounded-lg p-6">
             <h5 class="font-semibold text-lg mb-4">Total Price</h5>
             <div id="price-display" class="text-xl font-bold text-teal">Rp 0</div>
         </div>
 
-        <button type="submit" class="mt-3 py-2 px-4 bg-teal text-white font-semibold rounded-md hover:bg-white focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">Pay Now</button>
+        <button type="submit" class="bg-teal-600 text-white px-6 py-2 rounded-md hover:bg-teal-700">
+            Submit
+        </button>
     </form>
-</div>
-
-<script>
+    <script>
     // Update the displayed price based on the selected Joki type
     document.getElementById('joki_type').addEventListener('change', function() {
         var selectedOption = this.options[this.selectedIndex];
@@ -77,5 +74,5 @@
         document.getElementById('price-display').innerText = 'Rp ' + price;
     });
 </script>
-
+</div>
 @endsection

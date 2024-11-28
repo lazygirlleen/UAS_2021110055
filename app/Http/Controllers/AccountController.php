@@ -45,15 +45,20 @@ class AccountController extends Controller
             'characters' => 'nullable|array',
         ]);
 
+        // Create the Account
         $account = Account::create($request->only(['uid', 'name', 'email', 'location']));
 
-        // Attach characters if any are selected
+        // Attach selected characters using their IDs directly
         if ($request->has('characters')) {
-            $account->characters()->attach($request->input('characters'));
+            // Fetch the character models using the IDs from the form
+            $characters = Character::whereIn('id', $request->input('characters'))->get();
+            $account->characters()->attach($characters);
         }
 
         return redirect()->route('accounts.index')->with('success', 'Account created successfully!');
     }
+
+
 
     /**
      * Display the specified resource.
@@ -84,7 +89,7 @@ class AccountController extends Controller
             'character_name' => 'nullable|exists:characters,name'
         ]);
 
-        return redirect()->route('categories.index')->with('success', 'Category updated successfully.');
+        return redirect()->route('accounts.index')->with('success', 'Category updated successfully.');
     }
 
     /**

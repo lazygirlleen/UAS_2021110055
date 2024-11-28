@@ -22,8 +22,7 @@ Route::resource('accounts', AccountController::class);
 Route::resource('artefacts', ArtefactController::class);
 Route::resource('jokis', JokiController::class);
 Route::get('topups/create', [TopupController::class, 'create'])->name('topups.create');
-Route::get('jokis/{orderId}/status', [JokiController::class, 'checkAndUpdateStatus']);
-
+Route::get('/jokis/payment/{joki}', [JokiController::class, 'payment'])->name('jokis.payment');
 
 
 

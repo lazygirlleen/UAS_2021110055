@@ -13,7 +13,8 @@ class Joki extends Model
         'joki_type',
         'transaction_date',
         'payment_method',
-        'status'
+        'status',
+        'price',
     ];
 
     //1 Account Bisa melakukan banyak transaksi Joki

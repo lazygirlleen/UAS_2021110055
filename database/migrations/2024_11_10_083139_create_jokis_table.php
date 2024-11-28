@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('joki_type');
             $table->string('payment_method');
-            $table->timestamp('transaction_date')->useCurrent();;
+            $table->timestamp('transaction_date')->useCurrent();
             $table->string('status')->default('pending');
+            $table->integer('price');
         });
     }
 

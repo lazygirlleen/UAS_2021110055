@@ -26,4 +26,4 @@ class CreateAccountCharacterTable extends Migration
     {
         Schema::dropIfExists('account_character');
     }
-};
+}
