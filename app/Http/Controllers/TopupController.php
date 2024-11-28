@@ -3,84 +3,82 @@
 namespace App\Http\Controllers;
 
 use App\Models\Account;
+use App\Models\Joki;
 use App\Models\Topup;
 use Illuminate\Http\Request;
 
 class TopupController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $topups = Topup::paginate(10);
         return view('topups.index', compact('topups'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        // Retrieve all accounts to pass to the view
         $accounts = Account::all();
         return view('topups.create', compact('accounts'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        // Validate the request data
-        $validated = $request->validate([
-            'topup_type' => 'required|string',
-            'package' => 'required|string',
-            'payment_method' => 'required|string',
-            'account_id' => 'nullable|exists:accounts,id',
+    // app/Http/Controllers/JokiController.php
+
+public function store(Request $request)
+{
+    // Validasi data
+    $validated = $request->validate([
+        'account_id' => 'required|exists:accounts,id', // Ensure account_id exists in the accounts table
+        'topup_type' => 'required|string',
+        'package' => 'required|string',
+        'payment_method' => 'required|string',
+    ]);
+
+    // Simpan data Joki
+    $topup = Topup::create([
+        'account_id' => $validated['account_id'],  // Set the account_id for the Joki
+        'topup_type' => $validated['topup_type'],
+        'package' => $validated['package'],
+        'payment_method' => $validated['payment_method'],
+    ]);
+
+    // Konfigurasi Midtrans
+    \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
+    \Midtrans\Config::$isProduction = false; // Change to true for production
+    \Midtrans\Config::$isSanitized = true;
+    \Midtrans\Config::$is3ds = true;
+
+    // Data untuk transaksi
+    $params = [
+        'transaction_details' => [
+            'order_id' => $topup->id,
+            'gross_amount' => 100000, // Example transaction amount (adjust as needed)
+        ],
+        'customer_details' => [
+            'first_name' => 'John',
+            'last_name' => 'Doe',
+            'email' => 'johndoe@example.com',
+            'phone' => '081234567890',
+        ],
+    ];
+
+    // Create Snap Token
+    try {
+        $snapToken = \Midtrans\Snap::getSnapToken($params);
+
+        // Redirect to payment page or show the token
+        return view('topups.payment', [
+            'snapToken' => $snapToken,
+            'topup' => $topup,
         ]);
-
-        // Store the data in the database
-        Topup::create([
-            'topup_type' => $request->topup_type,
-            'package' => $request->package,
-            'payment_method' => $request->payment_method,
-            'account_id' => $validated['account_id'] ?? null,
-        ]);
-
-        // Redirect with success message
-        return redirect()->route('topups.index')->with('success', 'Top Up successfully added!');
+    } catch (\Exception $e) {
+        return redirect()->route('topups.index')->with('error', 'Failed to create transaction: ' . $e->getMessage());
     }
+}
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Topup $topup)
-    {
-        // Implementation can be added here if needed
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Topup $topup)
-    {
-        // Implementation can be added here if needed
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Topup $topup)
-    {
-        // Implementation can be added here if needed
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Topup $topup)
     {
-        // Implementation can be added here if needed
+        $topup->delete();
+        return redirect()->route('topups.index')->with('success', 'Topup successfully deleted!');
     }
 }

@@ -4,10 +4,10 @@
 
 @section('content')
 
-<div class="p-5 text-center font-bold py-4 text-teal">
-    <h1 class="text-teal text-3xl">Add New Character</h1>
-
+<div class="mt-4 p-5 bg-teal text-white rounded">
+    <h1 class="text-pink text-3xl">Add Character</h1>
 </div>
+
 
 <div class="row my-5">
     <div class="col-12 px-5">

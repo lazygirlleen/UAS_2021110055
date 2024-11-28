@@ -20,57 +20,58 @@ class JokiController extends Controller
         return view('jokis.create', compact('accounts'));
     }
 
-    public function store(Request $request)
-    {
-        // Validasi data
-        $validated = $request->validate([
-            'id' => 'required|string|max:255',
-            'joki_type' => 'required|string',
-            'payment_method' => 'required|string',
-            'account_id' => 'nullable|exists:accounts,id',
+    // app/Http/Controllers/JokiController.php
+
+public function store(Request $request)
+{
+    // Validasi data
+    $validated = $request->validate([
+        'account_id' => 'required|exists:accounts,id', // Ensure account_id exists in the accounts table
+        'joki_type' => 'required|string',
+        'payment_method' => 'required|string',
+    ]);
+
+    // Simpan data Joki
+    $joki = Joki::create([
+        'account_id' => $validated['account_id'],  // Set the account_id for the Joki
+        'joki_type' => $validated['joki_type'],
+        'payment_method' => $validated['payment_method'],
+    ]);
+
+    // Konfigurasi Midtrans
+    \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
+    \Midtrans\Config::$isProduction = false; // Change to true for production
+    \Midtrans\Config::$isSanitized = true;
+    \Midtrans\Config::$is3ds = true;
+
+    // Data untuk transaksi
+    $params = [
+        'transaction_details' => [
+            'order_id' => $joki->id,
+            'gross_amount' => 100000, // Example transaction amount (adjust as needed)
+        ],
+        'customer_details' => [
+            'first_name' => 'John',
+            'last_name' => 'Doe',
+            'email' => 'johndoe@example.com',
+            'phone' => '081234567890',
+        ],
+    ];
+
+    // Create Snap Token
+    try {
+        $snapToken = \Midtrans\Snap::getSnapToken($params);
+
+        // Redirect to payment page or show the token
+        return view('jokis.payment', [
+            'snapToken' => $snapToken,
+            'joki' => $joki,
         ]);
-
-        // Simpan data Joki
-        $joki = Joki::create([
-            'id' => $validated['id'],
-            'joki_type' => $validated['joki_type'],
-            'payment_method' => $validated['payment_method'],
-            'account_id' => $validated['account_id'] ?? null,
-        ]);
-
-        // Konfigurasi Midtrans
-        \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
-        \Midtrans\Config::$isProduction = false; // Ganti ke true untuk produksi
-        \Midtrans\Config::$isSanitized = true;
-        \Midtrans\Config::$is3ds = true;
-
-        // Data untuk transaksi
-        $params = [
-            'transaction_details' => [
-                'order_id' => $joki->id,
-                'gross_amount' => 100000, // Contoh jumlah transaksi (sesuaikan dengan kebutuhan)
-            ],
-            'customer_details' => [
-                'first_name' => 'John',
-                'last_name' => 'Doe',
-                'email' => 'johndoe@example.com',
-                'phone' => '081234567890',
-            ],
-        ];
-
-        // Buat Snap Token
-        try {
-            $snapToken = \Midtrans\Snap::getSnapToken($params);
-
-            // Redirect ke halaman pembayaran atau tampilkan token
-            return view('jokis.payment', [
-                'snapToken' => $snapToken,
-                'joki' => $joki,
-            ]);
-        } catch (\Exception $e) {
-            return redirect()->route('jokis.index')->with('error', 'Failed to create transaction: ' . $e->getMessage());
-        }
+    } catch (\Exception $e) {
+        return redirect()->route('jokis.index')->with('error', 'Failed to create transaction: ' . $e->getMessage());
     }
+}
+
 
     public function destroy(Joki $joki)
     {

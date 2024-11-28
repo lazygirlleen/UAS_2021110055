@@ -1,11 +1,10 @@
 @extends('layouts.app')
 
 @section('title', 'Input New Top Up Transaction')
-<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
 
 @section('content')
 <div class="p-5 text-center font-bold text-2xl">
-    <h1 class="text-teal text-3xl">Top Up</h1>
+    <h1 class="text-teal text-3xl">Topup</h1>
 </div>
 
 <div class="max-w-3xl mx-auto my-5">
@@ -24,9 +23,9 @@
 
         <div class="bg-white shadow-md rounded-lg p-5">
             <h5 class="font-semibold text-lg mb-4">Insert Your ID</h5>
-            <select class="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="characters[]" multiple>
+            <select class="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="account_id[]" multiple required>
                 @foreach ($accounts as $account)
-                    <option value="{{ $account->name }}">
+                    <option value="{{ $account->id }}">
                         {{ $account->name }}
                     </option>
                 @endforeach
@@ -57,13 +56,7 @@
                     <option value="Welkin_Moon" data-price="300" {{ old('package') == 'Welkin_Moon' ? 'selected' : '' }}>Blessing of the Welkin Moon</option>
                 </select>
             </div>
-        </div>
-
-        <!-- Display Price -->
-        <div class="bg-white shadow-md rounded-lg p-6">
-            <h5 class="font-semibold text-lg mb-4">Total Price</h5>
-            <div id="price-display" class="text-xl font-bold text-teal">Rp 0</div>
-        </div>
+        </div>
 
         <div class="bg-white shadow-md rounded-lg p-6">
             <h5 class="font-semibold text-lg mb-4">Choose Your Payment Method</h5>
@@ -77,20 +70,23 @@
             </div>
         </div>
 
-        <button id="pay-button" type="submit" class="mt-3 py-2 px-4 bg-teal text-white font-semibold rounded-md hover:bg-white focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">Pay Now</button>
-        <script>
-            var payButton = document.getElementById('pay-button');
-            payButton.addEventListener('click', function () {
-                snap.pay('{{ $snapToken }}');
-            });
+          <!-- Display Price -->
+          <div class="bg-white shadow-md rounded-lg p-6">
+            <h5 class="font-semibold text-lg mb-4">Total Price</h5>
+            <div id="price-display" class="text-xl font-bold text-teal">Rp 0</div>
+        </div>
 
-            // Update the displayed price based on the selected package
-            document.getElementById('package').addEventListener('change', function() {
-                var selectedOption = this.options[this.selectedIndex];
-                var price = selectedOption.getAttribute('data-price');
-                document.getElementById('price-display').innerText = 'Rp ' + price;
-            });
-        </script>
+        <button type="submit" class="mt-3 py-2 px-4 bg-teal text-white font-semibold rounded-md hover:bg-white focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">Pay Now</button>
     </form>
 </div>
+
+<script>
+    // Update the displayed price based on the selected Joki type
+    document.getElementById('package').addEventListener('change', function() {
+        var selectedOption = this.options[this.selectedIndex];
+        var price = selectedOption.getAttribute('data-price');
+        document.getElementById('price-display').innerText = 'Rp ' + price;
+    });
+</script>
+
 @endsection

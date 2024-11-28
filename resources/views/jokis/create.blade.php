@@ -23,9 +23,10 @@
 
         <div class="bg-white shadow-md rounded-lg p-5">
             <h5 class="font-semibold text-lg mb-4">Insert Your ID</h5>
-            <select class="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="characters[]" multiple>
+            <select class="block w-full border border-gray-300 rounded-md p-2"
+                    name="account_id[]" multiple required>
                 @foreach ($accounts as $account)
-                    <option value="{{ $account->name }}">
+                    <option value="{{ $account->id }}">
                         {{ $account->name }}
                     </option>
                 @endforeach
@@ -45,12 +46,6 @@
             </div>
         </div>
 
-        <!-- Display Price -->
-        <div class="bg-white shadow-md rounded-lg p-6">
-            <h5 class="font-semibold text-lg mb-4">Total Price</h5>
-            <div id="price-display" class="text-xl font-bold text-teal">Rp 0</div>
-        </div>
-
         <div class="bg-white shadow-md rounded-lg p-6">
             <h5 class="font-semibold text-lg mb-4">Choose Your Payment Method</h5>
             <div>
@@ -61,6 +56,13 @@
                     <option value="Transfer_Bank" {{ old('payment_method') == 'Transfer_Bank' ? 'selected' : '' }}>Transfer Bank</option>
                 </select>
             </div>
+        </div>
+
+
+          <!-- Display Price -->
+          <div class="bg-white shadow-md rounded-lg p-6">
+            <h5 class="font-semibold text-lg mb-4">Total Price</h5>
+            <div id="price-display" class="text-xl font-bold text-teal">Rp 0</div>
         </div>
 
         <button type="submit" class="mt-3 py-2 px-4 bg-teal text-white font-semibold rounded-md hover:bg-white focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">Pay Now</button>

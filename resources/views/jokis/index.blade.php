@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="mt-4 mb-3 p-5 text-center font-bold py-4">
-    <h1 class="text-green text-3xl">Joki Transactions</h1>
-    <button class="mt-3 py-2 px-4 bg-green text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">
+    <h1 class="text-teal text-3xl">Joki Transactions</h1>
+    <button class="mt-3 py-2 px-4 bg-teal text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">
     <a href="{{ route('jokis.create') }}" class="btn btn-primary btn-sm">
         Create New Transaction
     </a>

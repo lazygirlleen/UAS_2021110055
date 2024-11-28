@@ -57,7 +57,7 @@ class CharacterController extends Controller
             'nation' => 'required|string|max:13',
             'element' => 'required|string|max:13',
             'weapon' => 'required|string|max:13',
-            'faction' => 'required|string|max:255',
+            'faction' => 'nullablestring|max:255',
             'weapon_name' => 'nullable|exists:weapons,name',
             'artefact_name' => 'nullable|exists:artefacts,name'
         ]);
@@ -95,7 +95,7 @@ class CharacterController extends Controller
             'nation' => 'required|string|max:13',
             'element' => 'required|string|max:13',
             'weapon' => 'required|string|max:13',
-            'faction' => 'required|string|max:255',
+            'faction' => 'nullable|string|max:255',
             'weapon_name' => 'nullable|exists:weapons,name',
             'artefact_name' => 'nullable|exists:artefacts,name'
         ]);
@@ -123,7 +123,7 @@ class CharacterController extends Controller
             'nation' => $validated['nation'],
             'element' => $validated['element'],
             'weapon' => $validated['weapon'],
-            'faction' => $validated['faction'],
+            'faction' => $validated['faction'] ?? null,
             'weapon_name' => $validated['weapon_name'] ?? null,
             'avatar' => $validated['avatar'] ?? $character->avatar, // Use new or existing avatar
         ]);

@@ -4,8 +4,8 @@
 
 @section('content')
 
-<div class="mt-4 p-5 bg-black text-white rounded">
-    <h1 class="text-teal text-3xl">Edit Character</h1>
+<div class="mt-4 p-5 bg-teal text-white rounded">
+    <h1 class="text-pink text-3xl">Edit Character</h1>
 </div>
 
 
@@ -102,7 +102,7 @@
             </div>
 
 
-            <button type="submit" class="bg-green text-white font-bold py-2 px-4 rounded mt-4 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">Save</button>
+            <button type="submit" class="bg-teal text-pink font-bold py-2 px-4 rounded mt-4 hover:bg-pink hover:text-teal focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">Save</button>
         </form>
     </div>
 </div>
