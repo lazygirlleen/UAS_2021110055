@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('package');
             $table->string('payment_method');
             $table->timestamp('transaction_date')->useCurrent();
-            $table->string('status')->default('success');
+            $table->string('status')->default('pending');
         });
     }
 
