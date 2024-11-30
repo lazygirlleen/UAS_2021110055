@@ -21,16 +21,17 @@
     <form action="{{ route('jokis.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
         @csrf
 
+        <!-- Account Selection -->
         <div class="bg-white shadow-md rounded-lg p-5">
             <h5 class="font-semibold text-lg mb-4">Insert Your ID</h5>
-            <select class="block w-full border border-gray-300 rounded-md p-2"
-                    name="account_id[]" multiple required>
+            <select class="block w-full border border-gray-300 rounded-md p-2" name="account_id[]" multiple required>
                 @foreach ($accounts as $account)
                     <option value="{{ $account->id }}">{{ $account->name }}</option>
                 @endforeach
             </select>
         </div>
 
+        <!-- Joki Type Selection -->
         <div class="bg-white shadow-md rounded-lg p-6">
             <h5 class="font-semibold text-lg mb-4">Choose Your Joki Type</h5>
             <div class="mb-4">
@@ -44,6 +45,7 @@
             </div>
         </div>
 
+        <!-- Payment Method Selection -->
         <div class="bg-white shadow-md rounded-lg p-6">
             <h5 class="font-semibold text-lg mb-4">Choose Your Payment Method</h5>
             <div>
@@ -56,23 +58,29 @@
             </div>
         </div>
 
-        <!-- Display Price -->
+        <!-- Price Display -->
         <div class="bg-white shadow-md rounded-lg p-6">
             <h5 class="font-semibold text-lg mb-4">Total Price</h5>
             <div id="price-display" class="text-xl font-bold text-teal">Rp 0</div>
+            <!-- Hidden input for the price -->
+            <input type="hidden" name="price" id="price-input" value="0" required>
         </div>
 
-        <button type="submit" class="bg-teal-600 text-white px-6 py-2 rounded-md hover:bg-teal-700">
+        <!-- Submit Button -->
+        <button type="submit" class="bg-teal text-white px-6 py-2 rounded-md hover:bg-teal-700">
             Submit
         </button>
     </form>
-    <script>
-    // Update the displayed price based on the selected Joki type
-    document.getElementById('joki_type').addEventListener('change', function() {
-        var selectedOption = this.options[this.selectedIndex];
-        var price = selectedOption.getAttribute('data-price');
-        document.getElementById('price-display').innerText = 'Rp ' + price;
-    });
-</script>
 </div>
+
+<script>
+// Update the displayed price based on the selected Joki type
+document.getElementById('joki_type').addEventListener('change', function() {
+    var selectedOption = this.options[this.selectedIndex];
+    var price = selectedOption.getAttribute('data-price');
+    document.getElementById('price-display').innerText = 'Rp ' + price;
+    // Update the hidden input value
+    document.getElementById('price-input').value = price;
+});
+</script>
 @endsection

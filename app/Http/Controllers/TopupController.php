@@ -6,6 +6,8 @@ use App\Models\Account;
 use App\Models\Joki;
 use App\Models\Topup;
 use Illuminate\Http\Request;
+use Midtrans\Snap;
+use Midtrans\Config;
 
 class TopupController extends Controller
 {
@@ -23,58 +25,45 @@ class TopupController extends Controller
 
     // app/Http/Controllers/JokiController.php
 
-public function store(Request $request)
-{
-    // Validasi data
-    $validated = $request->validate([
-        'account_id' => 'required|exists:accounts,id', // Ensure account_id exists in the accounts table
-        'topup_type' => 'required|string',
-        'package' => 'required|string',
-        'payment_method' => 'required|string',
-    ]);
-
-    // Simpan data Joki
-    $topup = Topup::create([
-        'account_id' => $validated['account_id'],  // Set the account_id for the Joki
-        'topup_type' => $validated['topup_type'],
-        'package' => $validated['package'],
-        'payment_method' => $validated['payment_method'],
-    ]);
-
-    // Konfigurasi Midtrans
-    \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
-    \Midtrans\Config::$isProduction = false; // Change to true for production
-    \Midtrans\Config::$isSanitized = true;
-    \Midtrans\Config::$is3ds = true;
-
-    // Data untuk transaksi
-    $params = [
-        'transaction_details' => [
-            'order_id' => $topup->id,
-            'gross_amount' => 100000, // Example transaction amount (adjust as needed)
-        ],
-        'customer_details' => [
-            'first_name' => 'John',
-            'last_name' => 'Doe',
-            'email' => 'johndoe@example.com',
-            'phone' => '081234567890',
-        ],
-    ];
-
-    // Create Snap Token
-    try {
-        $snapToken = \Midtrans\Snap::getSnapToken($params);
-
-        // Redirect to payment page or show the token
-        return view('topups.payment', [
-            'snapToken' => $snapToken,
-            'topup' => $topup,
+    public function store(Request $request)
+    {
+        // Validasi input
+        $request->validate([
+            'account_id' => 'required|array',
+            'topup_type' => 'required|string',
+            'package' => 'required|string',
+            'payment_method' => 'required|string',
         ]);
-    } catch (\Exception $e) {
-        return redirect()->route('topups.index')->with('error', 'Failed to create transaction: ' . $e->getMessage());
-    }
-}
 
+        $selectedPackage = $request->input('package');
+        $price = str_replace('.', '', $request->input('price', 0));
+
+        $topup = Topup::create([
+            'account_id' => implode(',', $request->account_id), // Jika banyak
+            'topup_type' => $request->topup_type,
+            'package' => $selectedPackage,
+            'payment_method' => $request->payment_method,
+            'total_price' => $price,
+        ]);
+
+        $paymentCode = strtoupper(uniqid('PAY-'));
+
+        return view('payment.show', [
+            'transaction' => $topup,
+            'paymentCode' => $paymentCode
+        ]);
+    }
+
+    public function confirmPayment($id)
+    {
+        $topup = Topup::findOrFail($id);
+
+        // Lakukan proses pembayaran (simulasi)
+        $topup->status = 'paid'; // Asumsi ada kolom `status` di tabel topup
+        $topup->save();
+
+        return redirect()->back()->with('success', 'Payment successfully confirmed!');
+    }
 
     public function destroy(Topup $topup)
     {

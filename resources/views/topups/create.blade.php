@@ -21,6 +21,7 @@
     <form action="{{ route('topups.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
         @csrf
 
+        <!-- Account Selection -->
         <div class="bg-white shadow-md rounded-lg p-5">
             <h5 class="font-semibold text-lg mb-4">Insert Your ID</h5>
             <select class="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="account_id[]" multiple required>
@@ -32,9 +33,10 @@
             </select>
         </div>
 
+        <!-- Package Selection -->
         <div class="bg-white shadow-md rounded-lg p-6">
             <h5 class="font-semibold text-lg mb-4">Choose Your Top Up</h5>
-            <div class="mb-4">
+            <div>
                 <label for="topup_type" class="block font-medium text-gray-700">Type</label>
                 <select class="mt-1 p-2 border border-gray-300 rounded-lg w-full" id="topup_type" name="topup_type" required>
                     <option value="" disabled selected>Select Type</option>
@@ -44,20 +46,21 @@
             </div>
 
             <div>
-                <label for="package" class="block font-medium text-gray-700">Package</label>
-                <select class="mt-1 p-2 border border-gray-300 rounded-lg w-full" id="package" name="package" required>
-                    <option value="" disabled selected>Select Package</option>
-                    <option value="60_Genesis_Crystals" data-price="14.865" {{ old('package') == '60_Genesis_Crystals' ? 'selected' : '' }}>60 Genesis Crystals</option>
-                    <option value="330_Genesis_Crystals" data-price="72.973" {{ old('package') == '330_Genesis_Crystals' ? 'selected' : '' }}>300+30 Genesis Crystals</option>
-                    <option value="1090_Genesis_Crystals" data-price="229.730" {{ old('package') == '1090_Genesis_Crystals' ? 'selected' : '' }}>980+110 Genesis Crystals</option>
-                    <option value="2240_Genesis_Crystals" data-price="440.541" {{ old('package') == '2240_Genesis_Crystals' ? 'selected' : '' }}>1980+260 Genesis Crystals</option>
-                    <option value="3880_Genesis_Crystals" data-price="734.234" {{ old('package') == '3880_Genesis_Crystals' ? 'selected' : '' }}>3280+600 Genesis Crystals</option>
-                    <option value="8080_Genesis_Crystals" data-price="1.467.568" {{ old('package') == '8080_Genesis_Crystals' ? 'selected' : '' }}>6480+1600 Genesis Crystals</option>
-                    <option value="Welkin_Moon" data-price="300" {{ old('package') == 'Welkin_Moon' ? 'selected' : '' }}>Blessing of the Welkin Moon</option>
-                </select>
-            </div>
-        </div>
+    <label for="package" class="block font-medium text-gray-700 mt-3">Package</label>
+    <select class="mt-1 p-2 border border-gray-300 rounded-lg w-full" id="package" name="package" required>
+        <option value="" disabled selected>Select Package</option>
+        <option value="60_Genesis_Crystals" data-price="14.865">60 Genesis Crystals</option>
+        <option value="330_Genesis_Crystals" data-price="72.973">300+30 Genesis Crystals</option>
+        <option value="1090_Genesis_Crystals" data-price="229.730">980+110 Genesis Crystals</option>
+        <option value="2240_Genesis_Crystals" data-price="440.541">1980+260 Genesis Crystals</option>
+        <option value="3880_Genesis_Crystals" data-price="734.234">3280+600 Genesis Crystals</option>
+        <option value="8080_Genesis_Crystals" data-price="1.467.568">6480+1600 Genesis Crystals</option>
+        <option value="Welkin_Moon" data-price="300">Blessing of the Welkin Moon</option>
+    </select>
+</div>
+</div>
 
+        <!-- Payment Method Selection -->
         <div class="bg-white shadow-md rounded-lg p-6">
             <h5 class="font-semibold text-lg mb-4">Choose Your Payment Method</h5>
             <div>
@@ -70,8 +73,8 @@
             </div>
         </div>
 
-          <!-- Display Price -->
-          <div class="bg-white shadow-md rounded-lg p-6">
+        <!-- Display Price -->
+        <div class="bg-white shadow-md rounded-lg p-6">
             <h5 class="font-semibold text-lg mb-4">Total Price</h5>
             <div id="price-display" class="text-xl font-bold text-teal">Rp 0</div>
         </div>
@@ -81,7 +84,7 @@
 </div>
 
 <script>
-    // Update the displayed price based on the selected Joki type
+    // Update the displayed price based on the selected package
     document.getElementById('package').addEventListener('change', function() {
         var selectedOption = this.options[this.selectedIndex];
         var price = selectedOption.getAttribute('data-price');
