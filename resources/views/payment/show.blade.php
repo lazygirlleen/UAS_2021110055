@@ -14,7 +14,6 @@
         <p><strong>Top Up Type:</strong> {{ $transaction->topup_type }}</p>
         <p><strong>Package:</strong> {{ $transaction->package }}</p>
         <p><strong>Payment Method:</strong> {{ $transaction->payment_method }}</p>
-        <p><strong>Total Price:</strong> Rp {{ number_format($transaction->total_price, 0, ',', '.') }}</p>
     </div>
 
     <div class="bg-white shadow-md rounded-lg p-6 mt-5">
@@ -22,9 +21,22 @@
         <h3 class="text-xl font-bold">{{ $paymentCode }}</h3>
     </div>
 
+    <!-- Payment Steps Section -->
+    <div class="bg-white shadow-md rounded-lg p-6 mt-5">
+        <h5 class="font-semibold text-lg mb-4">How to Pay Using the Payment Code</h5>
+        <ol class="list-decimal list-inside space-y-3">
+            <li><strong>Step 1:</strong> Open the payment app or website of your chosen payment method (E-Wallet or Bank Transfer).</li>
+            <li><strong>Step 2:</strong> Select the "Pay" or "Transfer" option and look for the "Payment Code" or "Code" section.</li>
+            <li><strong>Step 3:</strong> Enter the payment code: <span class="font-bold text-teal">{{ $paymentCode }}</span>.</li>
+            <li><strong>Step 4:</strong> Enter the total price.</li>
+            <li><strong>Step 5:</strong> Complete the payment and wait for the confirmation.</li>
+            <li><strong>Step 6:</strong> Once payment is successful, click "Confirm Payment" below to complete the transaction.</li>
+        </ol>
+    </div>
+
     <form action="{{ route('payment.confirm', $transaction->id) }}" method="POST" class="mt-6">
         @csrf
-        <button class="py-2 px-4 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-opacity-50">
+        <button class="py-2 px-4 bg-teal text-white font-semibold rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-opacity-50">
             Confirm Payment
         </button>
     </form>

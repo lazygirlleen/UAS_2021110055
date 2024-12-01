@@ -55,7 +55,7 @@
         <option value="2240_Genesis_Crystals" data-price="440.541">1980+260 Genesis Crystals</option>
         <option value="3880_Genesis_Crystals" data-price="734.234">3280+600 Genesis Crystals</option>
         <option value="8080_Genesis_Crystals" data-price="1.467.568">6480+1600 Genesis Crystals</option>
-        <option value="Welkin_Moon" data-price="300">Blessing of the Welkin Moon</option>
+        <option value="Welkin_Moon" data-price="65.000">Blessing of the Welkin Moon</option>
     </select>
 </div>
 </div>
