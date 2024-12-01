@@ -62,7 +62,6 @@
         <div class="bg-white shadow-md rounded-lg p-6">
             <h5 class="font-semibold text-lg mb-4">Total Price</h5>
             <div id="price-display" class="text-xl font-bold text-teal">Rp 0</div>
-            <!-- Hidden input for the price -->
             <input type="hidden" name="price" id="price-input" value="0" required>
         </div>
 
@@ -79,8 +78,7 @@ document.getElementById('joki_type').addEventListener('change', function() {
     var selectedOption = this.options[this.selectedIndex];
     var price = selectedOption.getAttribute('data-price');
     document.getElementById('price-display').innerText = 'Rp ' + price;
-    // Update the hidden input value
-    document.getElementById('price-input').value = price;
+    document.getElementById('price-input').value = price; // Update the hidden input value
 });
 </script>
 @endsection

@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('payment_method');
             $table->timestamp('transaction_date')->useCurrent();
             $table->string('status')->default('pending');
-            $table->integer('price');
         });
     }
 

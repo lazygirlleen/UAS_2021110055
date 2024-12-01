@@ -17,18 +17,7 @@ class Joki extends Model
         'price',
     ];
 
-    public function getPrice()
-    {
-        // Define logic to calculate the price based on the joki_type
-        $prices = [
-            'TypeA' => 1000,  // Example pricing logic
-            'TypeB' => 2000,
-            'TypeC' => 3000,
-            // Add more types as needed
-        ];
 
-        return $prices[$this->joki_type] ?? 0;  // Default to 0 if no matching type
-    }
 
     //1 Account Bisa melakukan banyak transaksi Joki
     public function account()

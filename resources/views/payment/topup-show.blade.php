@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Payment Confirmation')
+@section('title', 'Top Up Payment Confirmation')
 
 @section('content')
 <div class="p-5 text-center font-bold text-2xl">
-    <h1 class="text-teal text-3xl">Confirm Your Payment</h1>
+    <h1 class="text-teal text-3xl">Confirm Your Top Up Payment</h1>
 </div>
 
 <div class="max-w-3xl mx-auto my-5">
@@ -32,15 +32,14 @@
             <li><strong>Step 5:</strong> Complete the payment and wait for the confirmation.</li>
             <li><strong>Step 6:</strong> Once payment is successful, click "Confirm Payment" below to complete the transaction.</li>
         </ol>
-    </div>
+    </div>
 
-    <form action="{{ route('payment.confirm', $transaction->id) }}" method="POST" class="mt-6">
-        @csrf
-        <button class="py-2 px-4 bg-teal text-white font-semibold rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-opacity-50">
-            Confirm Payment
-        </button>
-    </form>
-</div>
+    <form action="{{ route('payment.topup.confirm', $transaction->id) }}" method="POST">
+    @csrf
+    <button type="submit" class="py-2 px-4 bg-teal text-white font-semibold rounded-md hover:bg-green-700 mt-3">
+        Confirm Payment
+    </button>
+</form>
 
 @if (session('success'))
     <div class="max-w-3xl mx-auto my-5">

@@ -65,9 +65,49 @@
         </tbody>
     </table>
 
-    <div class="flex justify-center mt-4">
-        {{ $topups->links('pagination::tailwind') }}
+
+    <div class="flex justify-center mt-8">
+        <nav>
+            <ul class="inline-flex items-center space-x-1">
+                {{-- Previous Page Link --}}
+                @if ($topups->onFirstPage())
+                    <li class="page-item disabled">
+                        <span class="px-3 py-2 text-gray-500 bg-gray-200 rounded">&laquo; Previous</span>
+                    </li>
+                @else
+                    <li class="page-item">
+                        <a href="{{ $topups->previousPageUrl() }}" class="px-3 py-2 text-blue-500 bg-gray-100 hover:bg-gray-200 rounded">&laquo; Previous</a>
+                    </li>
+                @endif
+
+                {{-- Pagination Elements --}}
+                @foreach ($topups->links()->elements[0] as $page => $url)
+                    @if ($page == $topups->currentPage())
+                        <li class="page-item active">
+                            <span class="px-3 py-2 bg-blue-500 text-teal text-bold rounded">{{ $page }}</span>
+                        </li>
+                    @else
+                        <li class="page-item">
+                            <a href="{{ $url }}" class="px-3 py-2 text-pink text-bold bg-gray-100 hover:bg-gray-200 rounded">{{ $page }}</a>
+                        </li>
+                    @endif
+                @endforeach
+
+                {{-- Next Page Link --}}
+                @if ($topups->hasMorePages())
+                    <li class="page-item">
+                        <a href="{{ $topups->nextPageUrl() }}" class="px-3 py-2 text-blue-500 bg-gray-100 hover:bg-gray-200 rounded">Next &raquo;</a>
+                    </li>
+                @else
+                    <li class="page-item disabled">
+                        <span class="px-3 py-2 text-gray-500 bg-gray-200 rounded">Next &raquo;</span>
+                    </li>
+                @endif
+            </ul>
+        </nav>
     </div>
+</div>
+</div>
 </div>
 
 <script>

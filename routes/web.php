@@ -29,8 +29,6 @@ Route::post('jokis/store', [JokiController::class, 'store'])->name('jokis.store'
 
 use App\Http\Controllers\PaymentController;
 
-Route::get('/topuppayment', [TopupPaymentController::class, 'showPaymentPage'])->name('payment.page');
-Route::post('/topuppayment/confirm/{id}', [TopupController::class, 'confirmPayment'])->name('payment.confirm');
+Route::post('payment/joki/confirm/{id}', [JokiController::class, 'confirmJokiPayment'])->name('payment.joki.confirm');
+Route::post('payment/topup/confirm/{id}', [TopupController::class, 'confirmTopUpPayment'])->name('payment.topup.confirm');
 
-Route::get('/jokipayment', [JokiPaymentController::class, 'showPaymentPage'])->name('payment.page');
-Route::post('/jokipayment/confirm/{id}', [TopupController::class, 'confirmPayment'])->name('payment.confirm');

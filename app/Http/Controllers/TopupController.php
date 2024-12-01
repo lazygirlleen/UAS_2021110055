@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Account;
-use App\Models\Joki;
 use App\Models\Topup;
 use Illuminate\Http\Request;
-use Midtrans\Snap;
-use Midtrans\Config;
 
 class TopupController extends Controller
 {
@@ -23,8 +20,6 @@ class TopupController extends Controller
         return view('topups.create', compact('accounts'));
     }
 
-    // app/Http/Controllers/JokiController.php
-
     public function store(Request $request)
     {
         // Validasi input
@@ -35,39 +30,41 @@ class TopupController extends Controller
             'payment_method' => 'required|string',
         ]);
 
-        $selectedPackage = $request->input('package');
         $price = str_replace('.', '', $request->input('price', 0));
 
+        // Simpan transaksi Topup
         $topup = Topup::create([
-            'account_id' => implode(',', $request->account_id), // Jika banyak
+            'account_id' => implode(',', $request->account_id),
             'topup_type' => $request->topup_type,
-            'package' => $selectedPackage,
+            'package' => $request->package,
             'payment_method' => $request->payment_method,
             'total_price' => $price,
         ]);
 
         $paymentCode = strtoupper(uniqid('PAY-'));
 
-        return view('payment.show', [
+        // Redirect ke halaman konfirmasi pembayaran Topup
+        return view('payment.topup-show', [
             'transaction' => $topup,
             'paymentCode' => $paymentCode
         ]);
     }
 
-    public function confirmPayment($id)
+    public function confirmTopUpPayment($id)
     {
+        // Temukan data top-up berdasarkan ID
         $topup = Topup::findOrFail($id);
 
-        // Lakukan proses pembayaran (simulasi)
-        $topup->status = 'paid'; // Asumsi ada kolom `status` di tabel topup
+        // Periksa apakah pembayaran sudah dikonfirmasi
+        if ($topup->status === 'paid') {
+            return redirect()->back()->withErrors('Payment already confirmed!');
+        }
+
+        // Set status menjadi "paid"
+        $topup->status = 'paid';
         $topup->save();
 
-        return redirect()->back()->with('success', 'Payment successfully confirmed!');
-    }
-
-    public function destroy(Topup $topup)
-    {
-        $topup->delete();
-        return redirect()->route('topups.index')->with('success', 'Topup successfully deleted!');
+        // Redirect ke halaman yang sesuai
+        return redirect()->route('topups.index')->with('success', 'Payment successfully confirmed!');
     }
 }
