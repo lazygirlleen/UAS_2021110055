@@ -4,8 +4,8 @@
 
 @section('content')
 
-<div class="mt-4 p-5 bg-teal text-white rounded">
-    <h1 class="text-pink text-3xl">Add Character</h1>
+<div class="mt-4 p-5 text-center">
+    <h1 class="text-teal text-3xl font-bold">Add Character</h1>
 </div>
 
 
@@ -89,7 +89,7 @@
             </div>
 
 
-            <button type="submit" class="bg-green text-white font-bold py-2 px-4 rounded mt-4 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">
+            <button type="submit" class="bg-teal text-white font-bold py-2 px-4 rounded mt-4 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">
                 Save
             </button>
         </form>

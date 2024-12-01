@@ -39,14 +39,14 @@ class CharacterController extends Controller
     {
         $artefacts = Artefact::all();
         $weapons = Weapon::all();
-        return view('characters.edit', compact('character', 'weapons'));
+        return view('characters.edit', compact('character', 'weapons', 'artefacts'));
     }
 
     public function create()
     {
         $artefacts = Artefact::all();
         $weapons = Weapon::all();
-        return view('characters.create', compact('weapons'));
+        return view('characters.create', compact('weapons', 'artefacts'));
     }
 
     public function store(Request $request)
@@ -81,7 +81,11 @@ class CharacterController extends Controller
             $character->weapons()->sync($request->input('weapons'));
         }
 
-        return redirect()->route('characters.index')->with('success', 'Character created successfully');
+        if ($request->has('artefacts')) {
+            $character->artefacts()->sync($request->input('artefacts'));
+        }
+
+        return redirect()->route(route: 'characters.index')->with('success', 'Character created successfully');
     }
 
     /**
@@ -125,12 +129,17 @@ class CharacterController extends Controller
             'weapon' => $validated['weapon'],
             'faction' => $validated['faction'] ?? null,
             'weapon_name' => $validated['weapon_name'] ?? null,
+            'artefact_name' => $validated['artefact_name'] ?? null,
             'avatar' => $validated['avatar'] ?? $character->avatar, // Use new or existing avatar
         ]);
 
         // Sync selected weapons
         if ($request->has('weapons')) {
             $character->weapons()->sync($request->input('weapons'));
+        }
+
+        if ($request->has('artefacts')) {
+            $character->artefacts()->sync($request->input('artefacts'));
         }
 
         return redirect()->route('characters.index')->with('success', 'Character updated successfully');

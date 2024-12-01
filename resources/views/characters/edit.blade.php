@@ -4,8 +4,8 @@
 
 @section('content')
 
-<div class="mt-4 p-5 bg-teal text-white rounded">
-    <h1 class="text-pink text-3xl">Edit Character</h1>
+<div class="mt-4 p-5 text-center">
+    <h1 class="text-teal text-3xl font-bold">Edit Character</h1>
 </div>
 
 
@@ -82,15 +82,27 @@
                 </select>
             </div>
 
-            <div class="form-group mt-3">
-                    <label for="weapon_name">Characters Weapons</label>
-                    <select class="block w-full border border-gray-300 rounded-md p-2" name="weapons[]" multiple>
-                        @foreach ($weapons as $weapon)
-                            <option value="{{ $weapon->name }}" {{ $character->weapons->contains($weapon->name) ? "selected" : "" }}>
-                            {{ $weapon->name }}</option>
-                        @endforeach
-                    </select>
-            </div>
+        <div class="form-group mt-3">
+            <label for="weapon_name">Characters Weapons</label>
+            <select class="block w-full border border-gray-300 rounded-md p-2" name="weapons[]" multiple>
+                @foreach ($weapons as $weapon)
+                    <option value="{{ $weapon->name }}" {{ $character->weapons->contains('name', $weapon->name) ? "selected" : "" }}>
+                        {{ $weapon->name }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="artefact_name">Characters Artefacts</label>
+            <select class="block w-full border border-gray-300 rounded-md p-2" name="artefacts[]" multiple>
+                @foreach ($artefacts as $artefact)
+                    <option value="{{ $artefact->name }}" {{ $character->artefacts->contains('name', $artefact->name) ? "selected" : "" }}>
+                        {{ $artefact->name }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
 
             <div class="form-group mt-3">
                     <label for="avatar">Avatar</label>
