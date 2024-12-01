@@ -11,8 +11,16 @@
 <div class="container mx-auto px-4 py-8">
   {{-- Flash Message --}}
   @if(session('success'))
-    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4">
-      {{ session('success') }}
+    <div class="flex items-center bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg shadow-lg relative mb-4 animate-bounce" role="alert">
+      <svg class="fill-current h-6 w-6 mr-4 text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+        <path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0zm1 15H9v-2h2v2zm0-4H9V5h2v6z"/>
+      </svg>
+      <span class="block sm:inline">{{ session('success') }}</span>
+      <button type="button" class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="this.parentElement.remove();">
+        <svg class="fill-current h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+          <path d="M14.348 14.849a1 1 0 01-1.414 0L10 11.414l-2.935 2.935a1 1 0 01-1.414-1.414l2.935-2.935-2.935-2.935a1 1 0 011.414-1.414L10 8.586l2.935-2.935a1 1 0 011.414 1.414l-2.935 2.935 2.935 2.935a1 1 0 010 1.414z"/>
+        </svg>
+      </button>
     </div>
   @endif
 
