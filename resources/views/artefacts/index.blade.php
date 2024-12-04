@@ -35,7 +35,7 @@
         @endforelse
     </div>
 
-    <
+
     <div class="flex justify-center mt-8">
         <nav>
             <ul class="inline-flex items-center space-x-1">

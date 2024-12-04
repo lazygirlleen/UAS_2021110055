@@ -66,7 +66,7 @@
         </div>
 
         <!-- Submit Button -->
-        <button type="submit" class="bg-teal text-white px-6 py-2 rounded-md hover:bg-teal-700">
+        <button type="submit" class="bg-teal text-white px-6 py-2 rounded-md hover:bg-pink">
             Submit
         </button>
     </form>

@@ -172,7 +172,38 @@ class WeaponTableSeeder extends Seeder
                 'secondary_stat' => 'CRIT Rate',
                 'secondary_stat_value' => '23.4%',
             ],
+            [
+                'name' => 'Mistsplitter Reforged',
+                'rarity' => 5,
+                'type' => 'Sword',
+                'base_atk' => 674,
+                'secondary_stat' => 'CRIT DMG',
+                'secondary_stat_value' => '33.1%',
+            ],
+            [
+                'name' => 'The Unforged',
+                'rarity' => 5,
+                'type' => 'Claymore',
+                'base_atk' => 674,
+                'secondary_stat' => 'ATK',
+                'secondary_stat_value' => '20%',
+            ],
+            [
+                'name' => 'R5 Vortex Vanquisher',
+                'rarity' => 5,
+                'type' => 'Polearm',
+                'base_atk' => 674,
+                'secondary_stat' => 'CRIT Rate',
+                'secondary_stat_value' => '22.1%',
+            ],
+            [
+                'name' => 'Amos\'s Bow',
+                'rarity' => 5,
+                'type' => 'Bow',
+                'base_atk' => 674,
+                'secondary_stat' => 'ATK%',
+                'secondary_stat_value' => '19.4%',
+            ],
         ]);
     }
 }
-

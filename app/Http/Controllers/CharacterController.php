@@ -20,7 +20,7 @@ class CharacterController extends Controller
 
     public function index()
     {
-        $characters = Character::paginate(9);
+        $characters = Character::paginate(15);
         return view('characters.index', compact('characters'));
     }
 
@@ -56,7 +56,7 @@ class CharacterController extends Controller
             'rarity' => 'required|integer|in:4,5',
             'nation' => 'required|string|max:13',
             'element' => 'required|string|max:13',
-            'weapon' => 'required|string|max:13',
+            'type' => 'required|string|max:13',
             'faction' => 'nullablestring|max:255',
             'weapon_name' => 'nullable|exists:weapons,name',
             'artefact_name' => 'nullable|exists:artefacts,name'
@@ -98,7 +98,7 @@ class CharacterController extends Controller
             'rarity' => 'required|integer|in:4,5',
             'nation' => 'required|string|max:13',
             'element' => 'required|string|max:13',
-            'weapon' => 'required|string|max:13',
+            'type' => 'required|string|max:13',
             'faction' => 'nullable|string|max:255',
             'weapon_name' => 'nullable|exists:weapons,name',
             'artefact_name' => 'nullable|exists:artefacts,name'

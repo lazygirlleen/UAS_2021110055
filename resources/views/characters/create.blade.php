@@ -72,8 +72,8 @@
                     <option value="Cryo">Cryo</option>
                 </select>
 
-                <label for="weapon" class="block text-gray-700 mt-3">Weapon</label>
-                <select class="block w-full border border-gray-300 rounded-md p-2" id="weapon" name="weapon"  required value="{{ old(key: 'weapon')}}">
+                <label for="type" class="block text-gray-700 mt-3">Weapon</label>
+                <select class="block w-full border border-gray-300 rounded-md p-2" id="type" name="type"  required value="{{ old(key: 'type')}}">
                     <option value=""></option>
                     <option value="Sword">Sword</option>
                     <option value="Claymore">Claymore</option>

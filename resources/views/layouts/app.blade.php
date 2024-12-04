@@ -1,8 +1,7 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.10.3/dist/cdn.min.js" defer></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.10.3/dist/cdn.min.js" defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -21,44 +20,43 @@
                         {{ config('Teyvat Nexus') }} Teyvat Nexus
                     </a>
                     @auth
-                <a href="{{ route('home') }}" class="text-gray-700 hover:text-pink overflow-hidden transform transition-transform hover:scale-105">Home</a>
-                <a href="{{ route('accounts.index') }}" class="text-gray-700 hover:text-pink overflow-hidden transform transition-transform hover:scale-105">Account</a>
-                <a href="{{ route('characters.index') }}" class="text-gray-700 hover:text-pink overflow-hidden transform transition-transform hover:scale-105">Character</a>
-                <a href="{{ route('weapons.index') }}" class="text-gray-700 hover:text-pink overflow-hidden transform transition-transform hover:scale-105">Weapon</a>
-                <a href="{{ route('artefacts.index') }}" class="text-gray-700 hover:text-pink overflow-hidden transform transition-transform hover:scale-105">Artefact</a>
+                    <a href="{{ route('home') }}" class="text-gray-700 hover:text-pink overflow-hidden transform transition-transform hover:scale-105">Home</a>
+                    <a href="{{ route('accounts.index') }}" class="text-gray-700 hover:text-pink overflow-hidden transform transition-transform hover:scale-105">Account</a>
+                    <a href="{{ route('characters.index') }}" class="text-gray-700 hover:text-pink overflow-hidden transform transition-transform hover:scale-105">Character</a>
+                    <a href="{{ route('weapons.index') }}" class="text-gray-700 hover:text-pink overflow-hidden transform transition-transform hover:scale-105">Weapon</a>
+                    <a href="{{ route('artefacts.index') }}" class="text-gray-700 hover:text-pink overflow-hidden transform transition-transform hover:scale-105">Artefact</a>
 
-                <div class="relative nav-item" x-data="{ openTopup: false }">
-                    <a href="#" @click="openTopup = !openTopup" class="text-gray-700 hover:text-pink overflow-hidden transform transition-transform hover:scale-105">Top Up</a>
-                    <div x-show="openTopup" class="absolute right-0 mt-2 w-48 bg-white text-teal rounded-md shadow-lg z-20"
-                         x-transition:enter="transition ease-out duration-100 transform"
-                         x-transition:enter-start="opacity-0 scale-95"
-                         x-transition:enter-end="opacity-100 scale-100"
-                         x-transition:leave="transition ease-in duration-75 transform"
-                         x-transition:leave-start="opacity-100 scale-100"
-                         x-transition:leave-end="opacity-0 scale-95">
-                        <a href="{{ route('topups.create') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Request</a>
-                        <a href="{{ route('topups.index') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Transaction</a>
+                    <div class="relative nav-item" x-data="{ openTopup: false }">
+                        <a href="#" @click="openTopup = !openTopup" class="text-gray-700 hover:text-pink overflow-hidden transform transition-transform hover:scale-105">Top Up</a>
+                        <div x-show="openTopup" class="absolute right-0 mt-2 w-48 bg-white text-teal rounded-md shadow-lg z-20"
+                             x-transition:enter="transition ease-out duration-100 transform"
+                             x-transition:enter-start="opacity-0 scale-95"
+                             x-transition:enter-end="opacity-100 scale-100"
+                             x-transition:leave="transition ease-in duration-75 transform"
+                             x-transition:leave-start="opacity-100 scale-100"
+                             x-transition:leave-end="opacity-0 scale-95">
+                            <a href="{{ route('topups.create') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Request</a>
+                            <a href="{{ route('topups.index') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Transaction</a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="relative nav-item" x-data="{ openJoki: false }">
-                    <a href="#" @click="openJoki = !openJoki" class="text-gray-700 hover:text-pink overflow-hidden transform transition-transform hover:scale-105">Joki</a>
-                    <div x-show="openJoki" class="absolute right-0 mt-2 w-48 bg-white text-teal rounded-md shadow-lg z-20"
-                         x-transition:enter="transition ease-out duration-100 transform"
-                         x-transition:enter-start="opacity-0 scale-95"
-                         x-transition:enter-end="opacity-100 scale-100"
-                         x-transition:leave="transition ease-in duration-75 transform"
-                         x-transition:leave-start="opacity-100 scale-100"
-                         x-transition:leave-end="opacity-0 scale-95">
-                        <a href="{{ route('jokis.create') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Request</a>
-                        <a href="{{ route('jokis.index') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Transaction</a>
+                    <div class="relative nav-item" x-data="{ openJoki: false }">
+                        <a href="#" @click="openJoki = !openJoki" class="text-gray-700 hover:text-pink overflow-hidden transform transition-transform hover:scale-105">Joki</a>
+                        <div x-show="openJoki" class="absolute right-0 mt-2 w-48 bg-white text-teal rounded-md shadow-lg z-20"
+                             x-transition:enter="transition ease-out duration-100 transform"
+                             x-transition:enter-start="opacity-0 scale-95"
+                             x-transition:enter-end="opacity-100 scale-100"
+                             x-transition:leave="transition ease-in duration-75 transform"
+                             x-transition:leave-start="opacity-100 scale-100"
+                             x-transition:leave-end="opacity-0 scale-95">
+                            <a href="{{ route('jokis.create') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Request</a>
+                            <a href="{{ route('jokis.index') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Transaction</a>
+                        </div>
                     </div>
-                </div>
-            @endauth
+                    @endauth
                 </div>
 
                 <div class="relative nav-item" x-data="{ open: false }">
-                    <!-- Dropdown Toggle -->
                     @auth
                         <a @click="open = !open" @click.away="open = false"
                             class="nav-link cursor-pointer dropdown-toggle text-gray-800 hover:text-green-house-00 font-semibold"
@@ -66,7 +64,6 @@
                             {{ Auth::user()->name }}
                         </a>
 
-                        <!-- Dropdown Menu -->
                         <div x-show="open" class="absolute right-0 mt-2 w-48 bg-white text-green rounded-md shadow-lg z-20"
                             x-transition:enter="transition ease-out duration-100 transform"
                             x-transition:enter-start="opacity-0 scale-95"
@@ -74,7 +71,6 @@
                             x-transition:leave="transition ease-in duration-75 transform"
                             x-transition:leave-start="opacity-100 scale-100"
                             x-transition:leave-end="opacity-0 scale-95">
-
                             <a href="{{ route('logout') }}"
                                 class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -87,15 +83,27 @@
                         </div>
                     @endauth
                 </div>
-
-
-                </div>
             </div>
         </nav>
 
         <main class="container mx-auto py-4">
             @yield('content')
         </main>
+
+        <!-- Footer -->
+        <footer class="bg-teal text-white py-6 mt-10">
+            <div class="container mx-auto text-center">
+                <p class="text-sm">&copy; {{ date('Y') }} Teyvat Nexus. All rights reserved.</p>
+                <div class="mt-4 flex justify-center space-x-6">
+                    <a href="{{ url('/privacy-policy') }}" class="text-gray-300 hover:text-white text-sm">Privacy Policy</a>
+                    <a href="{{ url('/terms-of-service') }}" class="text-gray-300 hover:text-white text-sm">Terms of Service</a>
+                    <a href="{{ url('/contact') }}" class="text-gray-300 hover:text-white text-sm">Contact Us</a>
+                </div>
+                <div class="mt-4 text-sm text-gray-400">
+                    <p>Powered by <a href="https://laravel.com" class="text-white hover:text-pink">Laravel</a> & <a href="https://tailwindcss.com" class="text-white hover:text-pink">Tailwind CSS</a></p>
+                </div>
+            </div>
+        </footer>
     </div>
 </body>
 </html>
