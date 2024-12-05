@@ -64,7 +64,7 @@
                             {{ Auth::user()->name }}
                         </a>
 
-                        <div x-show="open" class="absolute right-0 mt-2 w-48 bg-white text-green rounded-md shadow-lg z-20"
+                        <div x-show="open" class="absolute right-0 mt-2 w-48 bg-white text-teal rounded-md shadow-lg z-20"
                             x-transition:enter="transition ease-out duration-100 transform"
                             x-transition:enter-start="opacity-0 scale-95"
                             x-transition:enter-end="opacity-100 scale-100"
