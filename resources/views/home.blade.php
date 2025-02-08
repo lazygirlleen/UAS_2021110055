@@ -5,6 +5,7 @@
 <div class="text-center mb-4">
     <h1 class="text-3xl font-bold text-teal">Selamat Datang di Teyvat Nexus</h1>
     <p class="text-gray-600 mt-2">Nikmati berbagai fitur menarik dari website kami!</p>
+    <p class="text-gray-600 mt-2">Berikut merupakan fitur-fitur yang kami tawarkan</p>
 </div>
 
 <main class="grid w-full place-content-center bg-gray-100">
